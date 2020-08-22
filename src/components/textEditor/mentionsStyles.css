@@ -1,0 +1,29 @@
+.main-suggestion-wrapper {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-color);
+  border-bottom: 1px solid var(--light);
+  padding: 0 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  box-sizing: border-box;
+  /* transform-origin: 50% 0%; */
+  /* transform: scaleY(0); */
+  /* margin: -16px; */
+}
+.suggestion-container {
+  display: flex;
+  align-items: center;
+}
+.suggestion-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+.suggestion-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
