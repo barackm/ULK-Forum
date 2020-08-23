@@ -3,9 +3,10 @@ import { FiRefreshCw } from "react-icons/fi";
 import { BsCaretDownFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import { GoCheck } from "react-icons/go";
+
+import { posts, users, categories } from "../../data/posts";
+import LoadingSpinner from "../common/loadingSpinner";
 import DiscussionList from "./discussionList";
-import { posts, users, categories } from "../data/posts";
-import LoadingSpinner from "./common/loadingSpinner";
 
 class DiscussionPage extends Component {
   state = {

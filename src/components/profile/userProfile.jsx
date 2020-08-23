@@ -1,19 +1,18 @@
 import React, { Component } from "react";
-import ColorLuminance from "./utils/getDarkenLihtenColor";
-import ulk from "../media/photos/ulk2.png";
-import Post from "./common/post";
 import { IconContext } from "react-icons";
 import { BsTrash } from "react-icons/bs";
 import { MdModeEdit } from "react-icons/md";
-import PostControls from "./common/postControls";
 import { TiMessages } from "react-icons/ti";
-import { Link, Redirect, Route } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { FaCog } from "react-icons/fa";
 import { FiAtSign } from "react-icons/fi";
-import PostList from "./postList";
-import { users, posts } from "../data/posts";
+
+import ColorLuminance from "../utils/getDarkenLihtenColor";
 import ProfileNavbar from "./profileNavbar";
-import Switch from "react-bootstrap/esm/Switch";
+import PostList from "../post/postList";
+import { users, posts } from "../../data/posts";
+import ulk from "../../media/photos/ulk2.png";
+
 class UserProfile extends Component {
   state = {
     UserTooltipVisible: false,

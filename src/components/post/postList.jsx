@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import Post from "./common/post";
-import PostControls from "./common/postControls";
+
+import Post from "../common/post";
+import PostControls from "../common/postControls";
 
 class PostList extends Component {
-  state = {};
   render() {
     const {
       onHideUser,

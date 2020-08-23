@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import UserTooltip from "./userTooltip";
 import { IconContext } from "react-icons";
 import { BsThreeDots } from "react-icons/bs";
+
+import UserTooltip from "./userTooltip";
 import { users } from "../../data/posts";
 
 class Post extends Component {
@@ -12,9 +13,6 @@ class Post extends Component {
     post: {},
     user: {},
   };
-  componentDidMount() {
-    // const post = this.props.post;
-  }
 
   handleShowPostControls = () => {
     this.setState({ showPostControls: !this.state.showPostControls });

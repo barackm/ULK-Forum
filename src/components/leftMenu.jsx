@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { IconContext } from "react-icons";
 import { GoCommentDiscussion } from "react-icons/go";
+
 class LeftMenu extends Component {
   state = {
     btnColor: "#00a651",

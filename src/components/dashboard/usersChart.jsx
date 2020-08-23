@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ChartistGraph from "react-chartist";
+
 class UserChart extends Component {
   state = {};
   render() {

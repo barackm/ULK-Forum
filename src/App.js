@@ -1,21 +1,30 @@
 import React, { Component } from "react";
-import "./App.css";
-import "./components/styles/styles.css";
+import { Route, Switch, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import Navigation from "./components/navigation";
 import ForumPage from "./components/forumPage";
-import Dashboard from "./components/dashboard";
-import PostDetails from "./components/postDetails";
-import { Route, Switch, Redirect } from "react-router-dom";
+import PostDetails from "./components/post/postDetails";
 import LoginModal from "./components/modals/loginModal";
 import SignupModal from "./components/modals/signupModal";
-import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import UserProfile from "./components/userProfile";
-import LoadingSpinner from "./components/common/loadingSpinner";
-import EditorConvertToHTML from "./components/textEditor/exempleEditor";
-import AppAlert from "./components/common/alert";
 import NotFoundPage from "./components/notFoundPage";
+import Dashboard from "./components/dashboard/dashboard";
+import UserProfile from "./components/profile/userProfile";
+
+import "./App.css";
+import "./components/styles/styles.css";
+import "./components/styles/navigation.css";
+import "./components/styles/forumPage.css";
+import "./components/styles/discussionPage.css";
+import "./components/styles/dashboard.css";
+import "./components/styles/posts.css";
+import "./components/styles/comments.css";
+import "./components/styles/modals.css";
+import "./components/styles/profile.css";
+import "./components/styles/mentions.css";
+import "react-toastify/dist/ReactToastify.css";
+import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+
 class App extends Component {
   state = {
     showLoginModal: false,
@@ -38,7 +47,6 @@ class App extends Component {
     this.setState({
       showLoginModal: false,
       showSignupModal: false,
-      // showTagsCategorieModal: false,
     });
   };
   handleOpenSignupModal = () => {
@@ -96,7 +104,7 @@ class App extends Component {
               <Route path="/post/:id" component={PostDetails} />
               <Route
                 path="/profile/:userId"
-                component={(props) => (
+                render={(props) => (
                   <UserProfile
                     {...props}
                     onToggleMenu={this.handleToggleMenu}
@@ -105,13 +113,13 @@ class App extends Component {
               ></Route>
               <Route
                 path="/dashboard"
-                component={(props) => (
+                render={(props) => (
                   <Dashboard {...props} onToggleMenu={this.handleToggleMenu} />
                 )}
               />
               <Route
                 path="/"
-                component={(props) => (
+                render={(props) => (
                   <ForumPage
                     {...props}
                     onToggleMenu={this.handleToggleMenu}
@@ -124,7 +132,6 @@ class App extends Component {
               <Route path="/not-found" component={NotFoundPage} />
               <Redirect to="/not-found" />
             </Switch>
-            {/* <NotFoundPage /> */}
           </main>
 
           <LoginModal

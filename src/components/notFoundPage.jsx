@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
 import notFound from "../data/svgs/404.svg";
 import meteor from "../data/svgs/meteor.svg";
 import astronaut from "../data/svgs/astronaut.svg";
 import spaceship from "../data/svgs/spaceship.svg";
+
 class NotFoundPage extends Component {
-  state = {};
   render() {
     return (
       <div className="not-found-page-main-wrapper">

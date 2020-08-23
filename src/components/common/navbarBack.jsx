@@ -4,7 +4,6 @@ import { IconContext } from "react-icons";
 import { MdArrowBack } from "react-icons/md";
 
 class NavbarBack extends Component {
-  state = {};
   render() {
     const { path } = this.props;
     return (

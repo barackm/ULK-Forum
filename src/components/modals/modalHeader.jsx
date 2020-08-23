@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { IconContext } from "react-icons/";
 import { RiCloseLine } from "react-icons/ri";
+
 class ModalHeader extends Component {
-  state = {};
   render() {
     const { title, onClose } = this.props;
     return (

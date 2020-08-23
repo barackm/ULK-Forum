@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import UserTooltip from "./common/userTooltip";
+
+import UserTooltip from "../common/userTooltip";
 
 class Comment extends Component {
   state = {

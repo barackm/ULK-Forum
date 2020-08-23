@@ -1,12 +1,10 @@
 import React, { Component } from "react";
-import { IconContext } from "react-icons";
-import { BsTrash } from "react-icons/bs";
-import { MdModeEdit } from "react-icons/md";
-import CommentsList from "./commentsList";
-import Post from "./common/post";
-import { posts, categories } from "../data/posts";
 import { Redirect } from "react-router-dom";
-import NavbarBack from "./common/navbarBack";
+
+import { posts, categories } from "../../data/posts";
+import CommentsList from "../comments/commentsList";
+import NavbarBack from "../common/navbarBack";
+import Post from "../common/post";
 
 class PostDetails extends Component {
   state = {
@@ -37,26 +35,7 @@ class PostDetails extends Component {
   handleHideUser = () => {
     this.setState({ UserTooltipVisible: false });
   };
-  PostControls = () => {
-    return (
-      <div className="post-additional-info">
-        <div className="post-controls-profile">
-          <div className="control-item">
-            <IconContext.Provider value={{ className: "profile-edit-icon" }}>
-              <MdModeEdit />
-            </IconContext.Provider>
-            <span>edit</span>
-          </div>
-          <div className="control-item">
-            <IconContext.Provider value={{ className: "profile-edit-icon" }}>
-              <BsTrash />
-            </IconContext.Provider>
-            <span>delete</span>
-          </div>
-        </div>
-      </div>
-    );
-  };
+
   render() {
     const { UserTooltipVisible, post, category } = this.state;
 

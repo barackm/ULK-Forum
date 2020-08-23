@@ -1,0 +1,32 @@
+/* mentions style  */
+
+.mention-secondary-wrapper {
+  display: flex;
+  align-items: center;
+  color: var(--white);
+}
+.mention-image-wrapper {
+  width: 25px;
+  height: 25px;
+  margin: 5px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.mention-details-wrapper {
+  display: flex;
+  color: var(--dark);
+}
+.mention-name {
+  margin-right: 5px;
+}
+.mention-image {
+  width: 100%;
+  height: 100%;
+}
+.mention-main-wrapper:hover {
+  background-color: var(--secondary-color);
+}
+.mention-main-wrapper {
+  /* margin-right: 400px !important; */
+}
+/* end mentions style  */

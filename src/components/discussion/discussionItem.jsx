@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { IconContext } from "react-icons";
 import { FaRegComment } from "react-icons/fa";
 import { Link } from "react-router-dom";
-class DiscussionItem extends Component {
-  state = {};
 
+class DiscussionItem extends Component {
   render() {
     const { post, users, categories } = this.props;
     const user = users.filter((user) => user.id === post.userId);

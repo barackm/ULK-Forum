@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-// import StyleButton from "./styledButton";
 import { GoTextSize } from "react-icons/go";
 import { FaHeading } from "react-icons/fa";
 import { IconContext } from "react-icons";
+
 class HeaderStyle extends Component {
   state = {
     showHeadings: false,

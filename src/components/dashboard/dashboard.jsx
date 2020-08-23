@@ -1,7 +1,7 @@
 import React, { Component } from "react";
+
 import DashboardSidebar from "./dashboardSidebar";
 import DashboardStatistics from "./dashboardStatistics";
-import UsersList from "./usersList";
 import DashboardNavbar from "./dashboardNavbar";
 
 class Dashboard extends Component {
@@ -43,8 +43,8 @@ class Dashboard extends Component {
           />
         </div>
         <div className="dashboard-main">
-          {/* <DashboardStatistics /> */}
-          <UsersList />
+          <DashboardStatistics />
+          {/* <UsersList /> */}
         </div>
       </div>
     );

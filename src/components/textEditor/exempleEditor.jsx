@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import { EditorState } from "draft-js";
 import { Editor } from "react-draft-wysiwyg";
-import toolbar from "./config";
 import { FaTimes, FaMinus } from "react-icons/fa";
-import "./newEditor.css";
+import { IoIosSend } from "react-icons/io";
 import { IconContext } from "react-icons";
 import { RiFullscreenLine } from "react-icons/ri";
-import { IoIosSend } from "react-icons/io";
+
 import CustomOption from "./customBtn";
+import toolbar from "./config";
 import { users } from "../../data/posts";
+import "./newEditor.css";
 
 class EditorConvertToHTML extends Component {
   state = {

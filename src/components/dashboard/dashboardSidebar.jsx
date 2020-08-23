@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+
 import { NavLink } from "react-router-dom";
 import { IconContext } from "react-icons";
-import { AiOutlineDashboard, AiOutlineRocket } from "react-icons/ai";
+import { AiOutlineDashboard } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { TiDocumentText } from "react-icons/ti";

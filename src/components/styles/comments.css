@@ -1,0 +1,75 @@
+/* comments  */
+
+.comments-wrapper {
+  width: 100%;
+  min-height: 700px;
+  display: flex;
+  flex-direction: column;
+}
+.comment-item-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  position: relative;
+}
+.comment-item-wrapper span {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 800;
+  margin: 20px;
+  color: var(--light);
+}
+.comment-owner-wrapper {
+  display: flex;
+  align-items: center;
+}
+.comments-wrapper .owner-image {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: dodgerblue;
+  border-radius: 50%;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.comments-wrapper .owner-image span {
+  color: var(--white);
+  font-size: 25px;
+  font-weight: 500;
+}
+.comment-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  padding: 10px 0;
+  text-decoration: none;
+  justify-content: center;
+}
+.timing.comment span {
+  color: var(--light);
+  text-transform: none;
+  font-weight: 500;
+  font-size: 16px;
+  margin-left: 20px;
+}
+.post-timing-details.comment {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.post-timing-details.comment h5 {
+  /* margin-top: 5px; */
+}
+.post-owner.comment span {
+  font-size: 25px;
+  color: var(--white);
+  font-weight: normal;
+}
+
+.comments-list-wrapper {
+  /* margin-left: 100px; */
+}
+/* end comments  */

@@ -10,7 +10,6 @@ const slice = createSlice({
   name: "users",
   reducers: {
     userCreated: (users, action) => {
-      console.log(action);
       return users;
     },
   },

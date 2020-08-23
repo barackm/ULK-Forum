@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import Comment from "./comment";
 
 class CommentsList extends Component {

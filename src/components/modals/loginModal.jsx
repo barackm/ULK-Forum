@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { FaUserGraduate } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
 import * as Yup from "yup";

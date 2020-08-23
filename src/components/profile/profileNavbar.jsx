@@ -2,15 +2,10 @@ import React, { Component } from "react";
 import { IconContext } from "react-icons/";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { TiArrowUnsorted } from "react-icons/ti";
+
 class ProfileNavbar extends Component {
-  state = {};
   render() {
-    const {
-      onShowModal,
-      handlSelecteLink,
-      onToggleMenu,
-      selectedLink,
-    } = this.props;
+    const { onShowModal, onToggleMenu, selectedLink } = this.props;
     return (
       <div className="profile-navbar-main-wrapper">
         <div className="profile-navbar-container">

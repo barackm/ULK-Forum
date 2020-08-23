@@ -14,7 +14,6 @@ import createLinkifyPlugin from "draft-js-linkify-plugin";
 import "draft-js-emoji-plugin/lib/plugin.css";
 import "draft-js-image-plugin/lib/plugin.css";
 import "draft-js-linkify-plugin/lib/plugin.css";
-import mentionsStyles from "./mentionsStyles.css";
 import "draft-js-hashtag-plugin/lib/plugin.css";
 
 import "./mentionsStyles.css";
@@ -30,10 +29,12 @@ import {
   AiOutlineCompress,
 } from "react-icons/ai";
 import { IconContext } from "react-icons";
+import { FaPaperPlane } from "react-icons/fa";
 import { RiFullscreenLine } from "react-icons/ri";
 import "../../../node_modules/draft-js/dist/Draft.css";
 import "../../../node_modules/draft-js-image-plugin/lib/plugin.css";
 import "./editerStyles.css";
+
 import StyleButton from "./styledButton";
 import HeaderStyle from "./headerStyle";
 import TagsCategoriesModal from "../modals/tagsCategoriesModal";
@@ -41,9 +42,6 @@ import CustomOption from "./customBtn";
 import { users } from "../../data/posts";
 import Entry from "./mentionEntry";
 import mentions from "./mentions";
-import { FaPaperPlane } from "react-icons/fa";
-// import positionSuggestions from "./positionSuggestion";
-// import Entry from "./suggestionEntry";
 
 class RichTextEditor extends React.Component {
   constructor(props) {

@@ -1,0 +1,203 @@
+/* navigation  */
+.navigation-wrapper {
+  width: 100%;
+  height: 50px;
+  background-color: var(--white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.603);
+  font-family: var(--font-familly);
+  position: fixed;
+  top: 0;
+  left: 0;
+  transition: all 0.3s;
+  z-index: 999;
+  /* padding: 10px 10px; */
+}
+.navigation-wrapper.scrolling {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+}
+.navigation-secondary-container {
+  width: 99%;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0 70px;
+  /* padding-right: 65px; */
+}
+.logo-brand-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+.logo-brand-wrapper img {
+  width: 40px;
+  height: 40px;
+}
+.logo-brand-wrapper span {
+  font-size: 20px;
+  color: var(--primary-color);
+  margin: 0 10px;
+  font-weight: 500;
+}
+.links-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.link {
+  cursor: pointer;
+}
+.input-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e8ecf3;
+  padding: 6px 15px;
+  border-radius: 5px;
+  transition: all 0.3s;
+  margin: 0 20px;
+  position: relative;
+}
+.input-wrapper input[type="text"] {
+  background-color: transparent;
+  border: none;
+  margin: 0 15px;
+  width: 180px;
+  color: var(--primary-color);
+  /* font-weight: 800; */
+  transition: all 0.3s;
+  font-size: 16px;
+  float: right;
+  right: 0;
+  font-family: var(--font-familly);
+}
+.input-wrapper:focus-within {
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+}
+.input-wrapper:focus-within > input[type="text"] {
+  /* width: 170px; */
+}
+
+.search-icon {
+  color: var(--primary-color);
+  font-weight: 700;
+  margin-left: 10px;
+}
+
+.nav-buttons-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-btn {
+  padding: 5px 20px;
+  border-radius: 3px;
+  background-color: var(--secondary-color);
+  border: 1px solid var(--primary-color);
+  margin-right: 5px;
+  text-align: center;
+  font-weight: 500;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+.login-with0 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px 0;
+}
+.login-with-google-btn {
+  width: 60%;
+  border: 2px solid var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.login-google-icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+.sign-up-btn {
+  padding: 6px 20px;
+  border-radius: 3px;
+  background-color: var(--primary-color);
+  margin-right: 10px;
+  text-align: center;
+  font-weight: 500;
+  color: var(--white);
+  cursor: pointer;
+}
+
+.links-wrapper ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.links-wrapper ul li {
+  list-style: none;
+  padding: 0 20px;
+}
+.links-wrapper ul li a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+.links-wrapper ul li a span {
+  display: none;
+}
+.link-icon {
+  font-size: 25px;
+  color: var(--primary-color);
+}
+
+@media (max-width: 1024px) {
+  .navigation-secondary-container {
+    width: 99%;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 30px;
+    /* padding-right: 65px; */
+  }
+}
+@media (max-width: 990px) {
+  .navigation-secondary-container {
+    width: 99%;
+    height: 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 30px;
+    /* padding-right: 65px; */
+  }
+  .logo-brand-wrapper img {
+    width: 40px;
+    height: 40px;
+  }
+  .logo-brand-wrapper span {
+    font-size: 20px;
+    color: var(--primary-color);
+    margin: 0 10px;
+    /* font-weight: 600; */
+    white-space: nowrap;
+  }
+  .login-btn {
+    padding: 5px 10px;
+    white-space: nowrap;
+  }
+  .sign-up-btn {
+    padding: 6px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+}
+/* end navigation  */

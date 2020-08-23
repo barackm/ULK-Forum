@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-
-import DiscussionItem from "./discussion/discussionItem";
+import DiscussionItem from "./discussionItem";
 
 class DiscussionList extends Component {
   state = {

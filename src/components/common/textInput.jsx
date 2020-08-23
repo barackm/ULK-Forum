@@ -5,6 +5,7 @@ import { BsEyeFill } from "react-icons/bs";
 import { AiFillEyeInvisible } from "react-icons/ai";
 
 import ErrorMessage from "./errorMessage";
+
 const TextInput = ({ placeholder, name, type = "text", icon, ...rest }) => {
   const [showPassword, setShowPassword] = useState(false);
   const { handleChange, setFieldTouched, touched, errors } = useFormikContext();

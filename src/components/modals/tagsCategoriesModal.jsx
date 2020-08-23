@@ -2,69 +2,14 @@ import React, { Component } from "react";
 import { IconContext } from "react-icons";
 import { FaTimes, FaCheckSquare, FaCheck } from "react-icons/fa";
 import { IoMdCloseCircleOutline } from "react-icons/io";
+
 import { categories } from "../../data/posts";
+
 class TagsCategoriesModal extends Component {
   state = {
     selectedTag: null,
     searchQuery: "",
   };
-  // categories = [
-  //   {
-  //     id: 1,
-  //     name: "Electronics",
-  //     color: "#3498db",
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Computer Science",
-  //     color: "#8e44ad",
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Low",
-  //     color: "#3498db",
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Civil Engineering",
-  //     color: "#FC427B",
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "IOT",
-  //     color: "#d35400",
-  //   },
-  //   {
-  //     id: 6,
-  //     name: "Accounting",
-  //     color: "#2ecc71",
-  //   },
-  //   {
-  //     id: 7,
-  //     name: "Music",
-  //     color: "#3498db",
-  //   },
-  //   {
-  //     id: 8,
-  //     name: "Cinema",
-  //     color: "#8e44ad",
-  //   },
-  //   {
-  //     id: 9,
-  //     name: "Entrepreneuship",
-  //     color: "#3498db",
-  //   },
-  //   {
-  //     id: 10,
-  //     name: "Theology",
-  //     color: "#FC427B",
-  //   },
-  //   {
-  //     id: 11,
-  //     name: "Bible",
-  //     color: "#d35400",
-  //   },
-  // ];
 
   componentDidMount() {}
 

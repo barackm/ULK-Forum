@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { IoMdTime } from "react-icons/io";
+
 import ColorLuminance from "../utils/getDarkenLihtenColor";
+
 class UserTooltip extends Component {
   state = {};
 
   render() {
-    const color = "#fc427b";
     const classes = this.props.visible
       ? "user-tooltip-wrapper visible"
       : "user-tooltip-wrapper";

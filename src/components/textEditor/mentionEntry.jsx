@@ -1,4 +1,5 @@
 import React from "react";
+
 class Entry extends React.Component {
   componentDidMount() {
     const element = document.querySelector(".mention-main-wrapper");

@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-import LeftMenu from "./leftMenu";
-import DiscussionPage from "./discussionPage";
-import RichTextEditor from "./textEditor/richTextEditor";
-import { categories } from "../data/posts";
 import { toast } from "react-toastify";
+
+import { categories } from "../data/posts";
+import DiscussionPage from "./discussion/discussionPage";
+import LeftMenu from "./leftMenu";
+import RichTextEditor from "./textEditor/richTextEditor";
 import NavbarForum from "./navbarForum";
+
 class ForumPage extends Component {
   state = {
     background: "",

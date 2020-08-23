@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { FaTrashAlt } from "react-icons/fa";
 import { IconContext } from "react-icons/";
-import { users } from "../data/posts";
+import { users } from "../../data/posts";
 import { GrSearch } from "react-icons/gr";
+
 class UsersList extends Component {
   state = {};
   render() {

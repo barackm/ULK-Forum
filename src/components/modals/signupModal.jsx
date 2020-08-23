@@ -12,7 +12,6 @@ import TextInput from "../common/textInput";
 import SubmitButton from "../common/submitButton";
 
 class SignupModal extends Component {
-  state = {};
   validationSchema = Yup.object().shape({
     email: Yup.string().email().required().label("Email"),
     name: Yup.string().min(3).required().label("Name"),

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { IconContext } from "react-icons";
 import { BsSearch } from "react-icons/bs";
-import { TiMessages } from "react-icons/ti";
 import { NavLink } from "react-router-dom";
-import { FiUsers } from "react-icons/fi";
 import { IoIosNotificationsOutline } from "react-icons/io";
 
 import logo from "../media/ULK_Logo.png";
@@ -47,13 +45,7 @@ class Navigation extends Component {
                   About
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink to="/">
-                  <IconContext.Provider value={{ className: "link-icon" }}>
-                    <FiUsers />
-                  </IconContext.Provider>
-                </NavLink>
-              </li> */}
+
               <li>
                 <NavLink to="/" onClick={this.handleHideMenu}>
                   <IconContext.Provider value={{ className: "link-icon" }}>
@@ -62,13 +54,6 @@ class Navigation extends Component {
                   <span>Notifications</span>
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink to="/">
-                  <IconContext.Provider value={{ className: "link-icon" }}>
-                    <TiMessages />
-                  </IconContext.Provider>
-                </NavLink>
-              </li> */}
             </ul>
             <div className="input-wrapper">
               <IconContext.Provider value={{ className: "search-icon" }}>
