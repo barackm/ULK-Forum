@@ -2,7 +2,8 @@ export const posts = [
   {
     id: "5b3835da-3e2a-4a19-9502-6f0424885d7b",
     categoryId: "42f63baf-5cf6-4820-bdda-a9d310e4f378",
-    title: "Lorem ipsum dolor sit amet",
+    title:
+      "Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet",
     content:
       "Vestibulum interdum ornare tincidunt.Proin eget mauris condimentum, fermentum lectus ut, gravida diam. Nam nec sollicitudin lacus. In sed justo vel velit vestibulum tincidunt. Sed congue sit amet purus eu ullamcorper. Sed nec rhoncus magna. Interdum et malesuada fames ac ante ipsum primis in faucibus. ",
     postedAt: Date.now(),

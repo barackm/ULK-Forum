@@ -51,6 +51,7 @@ class DashboardInfo extends Component {
             <span>Updated now</span>
           </div>
         </div>
+
         <div className="storage">
           <div className="storage-header">
             <div className="storage-icon-wrapper">

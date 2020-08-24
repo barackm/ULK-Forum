@@ -22,6 +22,8 @@ import "./components/styles/comments.css";
 import "./components/styles/modals.css";
 import "./components/styles/profile.css";
 import "./components/styles/mentions.css";
+import "./components/styles/main.css";
+
 import "react-toastify/dist/ReactToastify.css";
 import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 

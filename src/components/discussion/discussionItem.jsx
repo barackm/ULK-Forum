@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { IconContext } from "react-icons";
 import { FaRegComment } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import truncatedStr from "../utils/getTruncatedString";
 
 class DiscussionItem extends Component {
   render() {
@@ -10,6 +11,7 @@ class DiscussionItem extends Component {
     const category = categories.filter(
       (category) => category.id === post.categoryId
     );
+
     return (
       <Link to={`/post/${post.id}`} className="discussion-item-main-wrapper">
         <div className="discussion-profile-wrapper">
@@ -26,7 +28,7 @@ class DiscussionItem extends Component {
             )}
           </div>
           <div className="discussion-body">
-            <span>{post.title}</span>
+            <span>{truncatedStr(post.title, 100)}</span>
             <div className="post-about-timing">
               <span style={{ backgroundColor: category[0].color }}>
                 {category[0].name}
@@ -42,7 +44,9 @@ class DiscussionItem extends Component {
           >
             {category[0].name}
           </span>
-          <IconContext.Provider value={{ className: "discussion-icon" }}>
+          <IconContext.Provider
+            value={{ className: "discussion-icon comment" }}
+          >
             <FaRegComment />
           </IconContext.Provider>
           <span>50</span>

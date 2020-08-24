@@ -72,7 +72,7 @@
 .post-detail-profile {
   padding-top: 30px;
   display: flex;
-  padding-right: 100px;
+  padding-right: 0px;
   flex-direction: column;
 }
 .post-profile {
@@ -103,7 +103,7 @@
 .post-timing-details {
   display: flex;
   flex-direction: column;
-  text-align: left;
+  text-align: left !important;
   padding: 10px 0;
   text-decoration: none;
   align-items: center !important;
@@ -167,5 +167,52 @@
 .additional-info-post:hover {
   background-color: var(--primary-color);
   color: var(--white);
+}
+.post-main-wrapper {
+  /* overflow: hidden; */
+  overflow-y: hidden;
+}
+
+@media (max-width: 800px) {
+  .post-container {
+    margin-right: 0px !important;
+    padding-left: 0 !important;
+  }
+  .post-main-wrapper {
+    flex-direction: column;
+    width: 100%;
+  }
+  .post-details-container {
+    width: 95%;
+    padding-right: 0px !important;
+  }
+  .post-container .content {
+    margin-left: 0 !important;
+  }
+  .post-owner {
+    width: 40px;
+    height: 40px;
+  }
+  .post-timing-details {
+    align-items: flex-start !important;
+  }
+  .post-owner span {
+    font-size: 16px !important;
+  }
+  .timing {
+    margin-left: 0 !important;
+  }
+  .post-timing-details.comment {
+    justify-content: flex-start !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .post-timing-details.comment a {
+    margin-bottom: 0 !important;
+    margin-left: -20px;
+  }
+  .post-timing-details.comment h5 {
+    margin: 10px 0 !important;
+  }
 }
 /* end post details  */
