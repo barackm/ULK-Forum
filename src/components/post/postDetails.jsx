@@ -5,6 +5,7 @@ import { posts, categories } from "../../data/posts";
 import CommentsList from "../comments/commentsList";
 import NavbarBack from "../common/navbarBack";
 import Post from "../common/post";
+import truncatedStr from "../utils/getTruncatedString";
 
 class PostDetails extends Component {
   state = {
@@ -49,7 +50,9 @@ class PostDetails extends Component {
           <div className="post-category">
             <span style={{ color: category.color }}>{category.name}</span>
           </div>
-          <h4 className="question-synthese">{post.title}</h4>
+          <h4 className="question-synthese">
+            {truncatedStr(post.title || "welcome", 50)}
+          </h4>
         </div>
         <div className="post-details-container">
           <Post

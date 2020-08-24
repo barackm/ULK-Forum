@@ -1,4 +1,7 @@
 /* navigation  */
+a {
+  outline: 0 !important;
+}
 .navigation-wrapper {
   width: 100%;
   height: 50px;
@@ -25,6 +28,7 @@
   justify-content: space-around;
   align-items: center;
   padding: 0 70px;
+  outline: 0 !important;
   /* padding-right: 65px; */
 }
 .logo-brand-wrapper {
@@ -78,9 +82,6 @@
 .input-wrapper:focus-within {
   background-color: transparent;
   border: 2px solid var(--primary-color);
-}
-.input-wrapper:focus-within > input[type="text"] {
-  /* width: 170px; */
 }
 
 .search-icon {
@@ -166,38 +167,153 @@
     justify-content: space-around;
     align-items: center;
     padding: 0 30px;
-    /* padding-right: 65px; */
   }
 }
 @media (max-width: 990px) {
   .navigation-secondary-container {
-    width: 99%;
+    width: 100%;
     height: 40px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 0 30px;
-    /* padding-right: 65px; */
+    padding: 0 20px;
   }
   .logo-brand-wrapper img {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
   }
   .logo-brand-wrapper span {
-    font-size: 20px;
+    font-size: 18px;
     color: var(--primary-color);
     margin: 0 10px;
-    /* font-weight: 600; */
     white-space: nowrap;
   }
   .login-btn {
-    padding: 5px 10px;
+    padding: 3px 8px;
     white-space: nowrap;
   }
   .sign-up-btn {
-    padding: 6px 10px;
+    padding: 4px 8px;
     border-radius: 3px;
     white-space: nowrap;
+  }
+  .input-wrapper {
+    padding: 4px 15px;
+    margin: 0 15px;
+  }
+}
+
+@media (max-width: 800px) {
+  .navigation-wrapper {
+    width: 260px !important;
+    position: fixed;
+    height: 100%;
+    flex-direction: column !important;
+    width: 300px;
+    height: 100%;
+    justify-content: flex-start;
+    padding: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.507);
+    transition: all 0.3s;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.507);
+    transform: translateX(-100vw);
+  }
+  .input-wrapper {
+    width: 180px;
+    height: 25px;
+    transition: none;
+  }
+  .input-wrapper input[type="text"] {
+  }
+  .navigation-wrapper .navigation-secondary-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navigation-wrapper.toggled {
+    display: flex;
+    transform: translateX(0vw);
+  }
+
+  .logo-brand-wrapper {
+    margin-top: 320px;
+  }
+  .links-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  .links-wrapper ul {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .links-wrapper ul li {
+    padding-left: 0px;
+    width: 100%;
+  }
+  .links-wrapper ul li a {
+    text-align: left;
+    display: flex;
+    align-items: center;
+  }
+  .links-wrapper ul li a span {
+    display: inline;
+  }
+  .links-wrapper ul li a:first-child {
+    margin-bottom: 15px;
+    margin-left: 0px;
+  }
+  .link-icon {
+    display: none;
+  }
+  .nav-buttons-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 20px;
+  }
+  .input-wrapper {
+    margin-bottom: 10px;
+  }
+  .input-wrapper:focus-within {
+    width: 178px !important;
+    height: 23px !important;
+  }
+  .login-btn {
+    background: transparent;
+    border: none;
+    margin: 10px 0;
+  }
+  .sign-up-btn {
+    background: transparent;
+    border: none;
+    color: var(--primary-color);
+  }
+  .back-shed-menu {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-color: var(--modal-backgroud);
+    z-index: 999;
+  }
+}
+
+@media (max-width: 480px) {
+  .navigation-wrapper {
+    /* width: 300px !important;
+    position: fixed;
+    height: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.507);
+    transform: translateX(-100vw); */
   }
 }
 /* end navigation  */

@@ -27,14 +27,18 @@
   overflow-x: hidden !important;
   /* background-color: #959393; */
 }
+.post-controll-index-wrapper {
+}
 .post-additional-info {
   position: absolute;
-  top: 50px;
+  top: -90px;
   min-width: 100px;
   background-color: var(--white);
   box-shadow: 0 0px 4px rgba(0, 0, 0, 0.507);
   border-radius: 5px;
+  right: -15px !important;
   padding: 0 !important;
+  /* z-index: 999; */
 }
 .controlls-post-wrapper {
   position: relative;

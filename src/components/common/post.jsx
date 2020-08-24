@@ -88,7 +88,9 @@ class Post extends Component {
                       </div>
 
                       {this.state.showPostControls && (
-                        <div>{postControls()}</div>
+                        <div className="post-controll-index-wrapper">
+                          {postControls()}
+                        </div>
                       )}
                     </div>
                   )}
