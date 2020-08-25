@@ -12,7 +12,7 @@ const TextInput = ({ placeholder, name, type = "text", icon, ...rest }) => {
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
-
+  console.log(errors);
   const newInputType = type === "password" && !showPassword ? type : "text";
 
   return (
@@ -49,3 +49,4 @@ const TextInput = ({ placeholder, name, type = "text", icon, ...rest }) => {
 };
 
 export default TextInput;
+// https://github.com/mosh-hamedani/vidly-api-node

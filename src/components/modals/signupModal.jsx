@@ -32,7 +32,7 @@ class SignupModal extends Component {
     return (
       <div className="login-modal" style={modalContainerStyle}>
         <div className="modal">
-          <div className="login-modal-wrapper" style={styles}>
+          <div className="login-modal-wrapper signup" style={styles}>
             <div className="login-modal-container">
               <div className="modal-header">
                 <ModalHeader title="Sign Up" onClose={onClose} />

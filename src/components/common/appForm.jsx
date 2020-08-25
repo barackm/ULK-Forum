@@ -1,11 +1,11 @@
 import React from "react";
 import { Formik } from "formik";
 
-const AppForm = ({ initialValues, validateYupSchema, onSubmit, children }) => {
+const AppForm = ({ initialValues, validationSchema, onSubmit, children }) => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={validateYupSchema}
+      validationSchema={validationSchema}
       onSubmit={onSubmit}
     >
       {() => <>{children}</>}

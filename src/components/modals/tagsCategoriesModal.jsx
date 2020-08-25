@@ -51,7 +51,11 @@ class TagsCategoriesModal extends Component {
     };
 
     return (
-      <div className="tags-categories-modal" style={containerStyle}>
+      <div
+        className="tags-categories-modal"
+        style={containerStyle}
+        // onClick={onClose}
+      >
         <div className="tags-modal">
           <div className="tags-modal-content-wrapper" style={modalStyles}>
             <div className="tags-modal-header">

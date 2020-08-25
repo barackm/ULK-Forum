@@ -13,7 +13,7 @@ import SubmitButton from "../common/submitButton";
 const LoginModal = ({ onClose, shown, onOpenSignupModal }) => {
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().required().label("Email"),
-    password: Yup.string().required().label("Password"),
+    password: Yup.string().required().min(4).label("Password"),
   });
 
   const styles = {
@@ -27,7 +27,11 @@ const LoginModal = ({ onClose, shown, onOpenSignupModal }) => {
   return (
     <div className="login-modal" style={modalContainerStyle}>
       <div className="modal">
-        <div className="login-modal-wrapper" style={styles}>
+        <div
+          className={
+            shown ? "login-modal-wrapper visible" : "login-modal-wrapper"
+          }
+        >
           <div className="login-modal-container">
             <div className="modal-header">
               <ModalHeader title="Login" onClose={onClose} />

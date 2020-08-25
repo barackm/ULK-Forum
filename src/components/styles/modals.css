@@ -29,7 +29,7 @@
 }
 .modal {
   position: relative;
-  width: auto;
+  width: 100%;
   z-index: 99999;
 
   /* width: 600px; */
@@ -46,6 +46,35 @@
   flex-direction: column;
   overflow: hidden;
   transition: all 0.4s;
+  animation: animateLogin 0.4s ease-in;
+}
+.login-modal-wrapper.signup {
+  /* margin-top: 250px; */
+}
+.login-modal-wrapper.visible {
+  /* transform: scale(1);
+  visibility: visible; */
+  animation: animateLogin 0.4s ease-in;
+  transform: scale(1);
+  visibility: visible;
+}
+@keyframes animateLogin {
+  from {
+    transform: scale(0.5);
+  }
+  to {
+    transform: scale(1);
+    visibility: visible;
+  }
+}
+@keyframes animateCloseLogin {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+    visibility: hidden;
+  }
 }
 .login-modal-container {
   display: flex;
@@ -244,6 +273,7 @@ input {
 .submit-btn-wrapper {
   margin: 5px 0px;
   width: 80%;
+  outline: 0px !important;
   /* margin-top: 30px; */
 }
 .submit-btn-wrapper button {
@@ -254,7 +284,7 @@ input {
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  outline: none !important;
+  outline: 0px !important;
   font-weight: 900;
 }
 /* end submit button  */
@@ -322,6 +352,7 @@ input {
   right: 0;
   bottom: 0;
   left: 0;
+  width: 100%;
   /* visibility: hidden; */
   z-index: 9999;
   display: flex;
@@ -329,11 +360,23 @@ input {
   justify-content: center;
   /* background-color: blue; */
 }
-
+.tags-categories-modal .tags-modal {
+  visibility: visible !important;
+  z-index: 999999 !important;
+}
+.back-shed-category {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--modal-backgroud);
+}
 .tags-modal {
   position: absolute;
   width: auto;
-  z-index: 99999;
 }
 .tags-modal-content-wrapper {
   position: relative;
@@ -415,9 +458,16 @@ input {
 }
 .modal-tag button span {
   position: absolute;
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99 !important;
+  cursor: pointer;
   background-color: #e8ecf377;
+}
+.modal-tag button {
+  z-index: 9 !important;
 }
 .tags-modal-input-wrapper > input {
   margin-left: 10px;
@@ -655,4 +705,91 @@ input {
     /* justify-content: flex-start !important; */
   }
 }
+.error-message {
+  color: red;
+  font-size: 14px;
+}
 /* end user tooltip  */
+
+/* alert styles  */
+.alert-main-wrapper {
+  position: fixed;
+  width: 500px;
+  min-height: 200px;
+  z-index: 99999;
+  background-color: var(--white);
+  top: 40%;
+  left: -50%;
+  transform: translate(-50%, -50%);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.507);
+  transition: all 0.5s ease-in;
+}
+.alert-main-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  /* padding: 0 20px; */
+  color: var(--primary-color);
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-bottom-color);
+}
+.alert-title {
+  margin-left: 20px;
+}
+.alert-close {
+  margin-right: 20px;
+  cursor: pointer;
+}
+.alert-body-wrapper {
+  padding: 20px;
+}
+.alert-modal-footer {
+  width: 100%;
+  height: 50px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 20px; */
+  border-top: 1px solid var(--border-bottom-color);
+}
+.alert-modal-footer span {
+  visibility: hidden;
+}
+.alert-modal-close-btn {
+  cursor: pointer;
+  background-color: red;
+  border: none;
+  outline: 0;
+  padding: 7px 10px;
+  border-radius: 5px;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+}
+.alert-modal-close-btn.accept {
+  margin-left: 20px;
+  background-color: var(--primary-color);
+}
+.alert-btn-wrapper {
+  margin-right: 20px;
+}
+.alert-main-wrapper.visible {
+  left: 50%;
+}
+.modal-back-ground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--modal-backgroud);
+  z-index: 9999;
+  transition: all 0.7s;
+  display: none;
+}
+.modal-back-ground.visible {
+  display: block;
+}
+/* end alert styles  */

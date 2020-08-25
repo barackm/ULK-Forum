@@ -26,6 +26,7 @@ import "./components/styles/main.css";
 
 import "react-toastify/dist/ReactToastify.css";
 import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import AppAlert from "./components/common/alert";
 
 class App extends Component {
   state = {
@@ -141,6 +142,7 @@ class App extends Component {
             shown={this.state.showLoginModal}
             onClose={this.handleCloseLoginModal}
           />
+          <AppAlert />
           <SignupModal
             onOpenLoginModal={this.handleOpenLoginModal}
             shown={this.state.showSignupModal}

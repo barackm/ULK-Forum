@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { toast } from "react-toastify";
-
+import { stateToHTML } from "draft-js-export-html";
+import draftToHtml from "draftjs-to-html";
 import { categories } from "../data/posts";
 import DiscussionPage from "./discussion/discussionPage";
 import LeftMenu from "./leftMenu";
 import RichTextEditor from "./textEditor/richTextEditor";
 import NavbarForum from "./navbarForum";
-
+import ReactHtmlParser from "react-html-parser";
 class ForumPage extends Component {
   state = {
     background: "",
@@ -15,6 +16,7 @@ class ForumPage extends Component {
     showTagsCategorieModal: false,
     category: {},
     categoriesModalShown: false,
+    currentText: "",
   };
   handleChangeBtnColor = (category) => {
     this.setState({
@@ -22,6 +24,9 @@ class ForumPage extends Component {
       categorySelected: category.name,
       category,
     });
+  };
+  handleToggleEditor = () => {
+    this.setState({ showEditor: !this.state.showEditor });
   };
   handleShowEditor = () => {
     this.setState({ showEditor: true });
@@ -37,16 +42,24 @@ class ForumPage extends Component {
   handleCloseTagsCategoriesModal = () => {
     this.setState({ showTagsCategorieModal: false });
   };
-  handleSubmitPost = () => {
-    toast("🦄 Wow so easy!", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+  handleSubmitPost = (post) => {
+    // toast("🦄 Wow so easy!", {
+    //   position: "top-right",
+    //   autoClose: 5000,
+    //   hideProgressBar: false,
+    //   closeOnClick: true,
+    //   pauseOnHover: true,
+    //   draggable: true,
+    //   progress: undefined,
+    // });
+    const hashtagConfig = {
+      trigger: "#",
+      separator: " ",
+    };
+    const directional = false;
+    // const customEntityTransform=
+    const html = draftToHtml(post, hashtagConfig, directional);
+    this.setState({ currentText: html });
   };
   handleChangeCategory = () => {
     this.setState({ categoriesModalShown: !this.state.categoriesModalShown });
@@ -69,7 +82,7 @@ class ForumPage extends Component {
         {showTagsCategorieModal ? (
           <div
             onClick={this.handleCloseTagsCategoriesModal}
-            className="back-shed"
+            className="back-shed-category"
           ></div>
         ) : (
           ""
@@ -85,7 +98,7 @@ class ForumPage extends Component {
               categoriesModalShown={categoriesModalShown}
               categories={categories}
               onColorChange={this.handleChangeBtnColor}
-              onShowEditor={this.handleShowEditor}
+              onShowEditor={this.handleToggleEditor}
               onHideModal={this.handlHideCategoryModal}
             />
             <div className="navbar-forum">

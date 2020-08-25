@@ -1,5 +1,10 @@
 import React from "react";
-import { EditorState, RichUtils, getDefaultKeyBinding } from "draft-js";
+import {
+  EditorState,
+  RichUtils,
+  getDefaultKeyBinding,
+  convertToRaw,
+} from "draft-js";
 import Editor from "draft-js-plugins-editor";
 import { IoIosSend } from "react-icons/io";
 import { FaQuoteLeft, FaRegEdit, FaMinus, FaTimes } from "react-icons/fa";
@@ -22,7 +27,6 @@ import createMentionPlugin, {
   defaultSuggestionsFilter,
 } from "draft-js-mention-plugin";
 import "draft-js-mention-plugin/lib/plugin.css";
-// import mentions from "./mentions";
 import {
   AiOutlineOrderedList,
   AiOutlineFontColors,
@@ -42,6 +46,7 @@ import CustomOption from "./customBtn";
 import { users } from "../../data/posts";
 import Entry from "./mentionEntry";
 import mentions from "./mentions";
+import AppAlert from "../common/alert";
 
 class RichTextEditor extends React.Component {
   constructor(props) {
@@ -52,8 +57,11 @@ class RichTextEditor extends React.Component {
       suggestions: mentions,
       editorReduced: false,
       closeEdior: false,
-      selectedTag: "",
+      selectedTag: null,
       newSuggestions: [],
+      showAlert: false,
+      alertMessage: "",
+      postTitle: "",
     };
 
     this.mathjaxPlugin = createMathjaxPlugin();
@@ -68,12 +76,6 @@ class RichTextEditor extends React.Component {
     this.imagePlugin = createImagePlugin();
     this.hashtagPlugin = createHashtagPlugin();
     this.mentionPlugin = createMentionPlugin();
-    // mentions,
-    // entityMutability: "IMMUTABLE",
-    // // theme: mentionsStyles,
-    // positionSuggestions,
-    // mentionPrefix: "@",
-    // supportWhitespace: true,
   }
   componentDidMount() {
     const suggestions = this.handlGetMentionUsers(users);
@@ -174,8 +176,29 @@ class RichTextEditor extends React.Component {
   handleSubmitTag = (tag) => {
     this.setState({ selectedTag: tag });
   };
+  handleChangePostTitle = (e) => {
+    this.setState({ postTitle: e.target.value });
+  };
   handleSubmit = () => {
-    this.props.onSubmit();
+    const { selectedTag, postTitle } = this.state;
+    let alertMessage = "";
+    if (!selectedTag) {
+      alertMessage += "You have to choose a category for your discussion ,";
+      this.setState({ alertMessage });
+      this.handleShowAlert();
+    }
+    if (postTitle.trim().length === 0) {
+      alertMessage += "Post title should not be empty ,";
+      this.setState({ alertMessage });
+      this.handleShowAlert();
+    }
+    const data = this.handleExtractData(this.state.editorState);
+    this.props.onSubmit(data);
+  };
+
+  handleExtractData = (state) => {
+    const contentState = state.getCurrentContent();
+    return convertToRaw(contentState);
   };
   handlGetMentionUsers = (users) => {
     const newUsersMentions = [];
@@ -190,26 +213,39 @@ class RichTextEditor extends React.Component {
 
     return newUsersMentions;
   };
+  handleKeyCommand(command) {
+    const { editorState } = this.state;
+    const newState = RichUtils.handleKeyCommand(editorState, command);
+    if (newState) {
+      this.onChange(newState);
+      return true;
+    }
+    return false;
+  }
+  handleShowAlert = () => {
+    this.setState({ showAlert: true });
+  };
+  handleHideAlert = () => {
+    this.setState({ showAlert: false });
+  };
   render() {
-    // const newMentions = this.handlGetMentionUsers(users);
-
     const {
       editorState,
       fullScreen,
       editorReduced,
       closeEdior,
       selectedTag,
+      showAlert,
+      alertMessage,
     } = this.state;
     const { MentionSuggestions } = this.mentionPlugin;
     const { EmojiSuggestions, EmojiSelect } = this.emojiPlugin;
-    // const {  } = this.imagePlugin;
     const plugins = [
       this.mentionPlugin,
       this.emojiPlugin,
       this.imagePlugin,
       this.hashtagPlugin,
       this.linkifyPlugin,
-      // this.mathjaxPlugin,
     ];
     const {
       showEditor,
@@ -268,7 +304,11 @@ class RichTextEditor extends React.Component {
               </div>
               <div className="input-style-wrapper">
                 <div className="input-title-wrapper">
-                  <input type="text" placeholder="Enter dicussion Title" />
+                  <input
+                    type="text"
+                    placeholder="Enter dicussion Title"
+                    onChange={this.handleChangePostTitle}
+                  />
                 </div>
               </div>
             </div>
@@ -309,15 +349,12 @@ class RichTextEditor extends React.Component {
               blockStyleFn={getBlockStyle}
               customStyleMap={styleMap}
               editorState={editorState}
-              handleKeyCommand={this.handleKeyCommand}
+              handleKeyCommand={this._handleKeyCommand}
               keyBindingFn={this.mapKeyToEditorCommand}
               onChange={this.onChange}
               placeholder="Type your message here..."
-              // ref={(element) => {
-              //   console.log(element);
-              //   this.editor = element;
-              // }}
               ref="editor"
+              // handleKeyCommand={this.handleKeyCommand.bind(this)}
               plugins={plugins}
               spellCheck={true}
             />
@@ -366,6 +403,12 @@ class RichTextEditor extends React.Component {
           onClose={onCloseCategorie}
           onSubmitTag={this.handleSubmitTag}
           selectedTag={selectedTag}
+        />
+        <AppAlert
+          message={alertMessage}
+          title="Error"
+          onHide={this.handleHideAlert}
+          visible={showAlert}
         />
       </>
     );
