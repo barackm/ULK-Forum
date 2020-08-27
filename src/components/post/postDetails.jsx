@@ -15,13 +15,13 @@ class PostDetails extends Component {
   };
 
   componentDidMount() {
-    const postId = this.props.match.params.id;
-    const post = posts.filter((post) => post.id === postId);
+    const postId = this.props.match.params._id;
+    const post = posts.filter((post) => post._id === postId);
 
     if (post.length === 0) return <Redirect to="/" />;
     else {
       const category = categories.filter(
-        (category) => category.id === post[0].categoryId
+        (category) => category._id === post[0].categoryId
       );
       this.setState({
         post: post[0],
@@ -39,7 +39,7 @@ class PostDetails extends Component {
 
   render() {
     const { UserTooltipVisible, post, category } = this.state;
-
+    console.log(category);
     return (
       <div className="post-details-wrapper">
         <NavbarBack path="/" />

@@ -6,9 +6,9 @@ import { IoIosSend } from "react-icons/io";
 import { IconContext } from "react-icons";
 import { RiFullscreenLine } from "react-icons/ri";
 
-import CustomOption from "./customBtn";
-import toolbar from "./config";
-import { users } from "../../data/posts";
+import CustomOption from "../customBtn";
+import toolbar from "../config";
+import { users } from "../../../data/posts";
 import "./newEditor.css";
 
 class EditorConvertToHTML extends Component {

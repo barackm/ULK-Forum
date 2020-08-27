@@ -39,7 +39,7 @@ class DiscussionPage extends Component {
   filteredCategories = (category, posts) => {
     console.log("the cattegory", Object.keys(category).length);
     if (!category || Object.keys(category).length === 0) return posts;
-    return posts.filter((post) => post.categoryId === category.id);
+    return posts.filter((post) => post.categoryId === category._id);
   };
   render() {
     const categories1 = [
@@ -76,7 +76,7 @@ class DiscussionPage extends Component {
             </span>
             <ul className="drop-down-links">
               {categories1.map((c) => (
-                <li key={c.id} onClick={() => this.handlChangeCategory(c)}>
+                <li key={c._id} onClick={() => this.handlChangeCategory(c)}>
                   <div className="check-icon-wrapper">
                     {selectedCategory === c.name && (
                       <IconContext.Provider value={{ className: "check-icon" }}>

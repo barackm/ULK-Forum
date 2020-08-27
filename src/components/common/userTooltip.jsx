@@ -24,7 +24,7 @@ class UserTooltip extends Component {
           >
             <div className="user-tool-tip-profile">
               <Link
-                to={`/profile/${user.id}`}
+                to={`/profile/${user._id}`}
                 className="user"
                 style={{ backgroundColor: user.color }}
               >
@@ -41,7 +41,7 @@ class UserTooltip extends Component {
               </Link>
             </div>
             <div className="user-tool-tip-details">
-              <Link to={`/profile/${user.id}`} className="name">
+              <Link to={`/profile/${user._id}`} className="name">
                 {user.firstName + " " + user.lastName}
               </Link>
               <div className="posted-at">

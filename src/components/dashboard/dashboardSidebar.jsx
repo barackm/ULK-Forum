@@ -1,29 +1,39 @@
 import React, { Component } from "react";
 
-import { NavLink } from "react-router-dom";
 import { IconContext } from "react-icons";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { FiUsers } from "react-icons/fi";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { TiDocumentText } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
 class DashboardSidebar extends Component {
   state = {};
   links = [
     {
-      id: 1,
+      _id: 1,
       name: "Dashboard",
-      path: "/dashboard",
+      path: `${this.props.match.url}/`,
       icon: <AiOutlineDashboard />,
     },
-    { id: 2, name: "Users", path: "/dashboard", icon: <FiUsers /> },
     {
-      id: 3,
+      _id: 2,
+      name: "Users",
+      path: `${this.props.match.url}/users/`,
+      icon: <FiUsers />,
+    },
+    {
+      _id: 3,
       name: "Notifications",
-      path: "/dashboard",
+      path: `${this.props.match.url}/notifications/`,
       icon: <IoMdNotificationsOutline />,
     },
-    { id: 4, name: "Posts", path: "/dashboard", icon: <TiDocumentText /> },
+    {
+      _id: 4,
+      name: "Posts",
+      path: `${this.props.match.url}/posts/`,
+      icon: <TiDocumentText />,
+    },
   ];
   render() {
     const { navbarToggled, onSelectLink, selectedLink } = this.props;
@@ -48,9 +58,9 @@ class DashboardSidebar extends Component {
           </div>
           <div className="dashboard-sidebar-links">
             {this.links.map((l) => (
-              <NavLink
+              <Link
                 to={l.path}
-                key={l.id}
+                key={l._id}
                 className={
                   selectedLink === l.name
                     ? "link-dashboard active-link"
@@ -64,18 +74,18 @@ class DashboardSidebar extends Component {
                   {l.icon}
                 </IconContext.Provider>
                 <span>{l.name}</span>
-              </NavLink>
+              </Link>
             ))}
           </div>
           {/* <div className="dashboard-sidebar-footer">
-            <NavLink to="/" className="link-dashboard active end">
+            <div to="/" className="link-dashboard active end">
               <IconContext.Provider
                 value={{ className: "dashboard-icon-link" }}
               >
                 <AiOutlineRocket />
               </IconContext.Provider>
               <span>Remove as Admin</span>
-            </NavLink>
+            </div>
           </div> */}
         </div>
       </div>

@@ -14,7 +14,7 @@ class DiscussionList extends Component {
     return (
       <div className="discussion-list-main-wrapper">
         {posts.map((post) => (
-          <div key={post.id}>
+          <div key={post._id}>
             <DiscussionItem post={post} users={users} categories={categories} />
           </div>
         ))}

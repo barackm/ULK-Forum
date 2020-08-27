@@ -27,6 +27,10 @@ import "./components/styles/main.css";
 import "react-toastify/dist/ReactToastify.css";
 import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import AppAlert from "./components/common/alert";
+import AboutPage from "./components/about/aboutPage";
+import DashboardStatistics from "./components/dashboard/dashboardStatistics";
+import UsersPage from "./components/dashboard/usersPage";
+import PostsPage from "./components/dashboard/postsPage";
 
 class App extends Component {
   state = {
@@ -104,7 +108,7 @@ class App extends Component {
           />
           <main className="main-app-wrapper">
             <Switch>
-              <Route path="/post/:id" component={PostDetails} />
+              <Route path="/post/:_id" component={PostDetails} />
               <Route
                 path="/profile/:userId"
                 render={(props) => (
@@ -121,7 +125,7 @@ class App extends Component {
                 )}
               />
               <Route
-                path="/"
+                path="/discussions"
                 render={(props) => (
                   <ForumPage
                     {...props}
@@ -133,8 +137,10 @@ class App extends Component {
                 )}
               />
               <Route path="/not-found" component={NotFoundPage} />
+              <Redirect from="/" to="/discussions" />
               <Redirect to="/not-found" />
             </Switch>
+            {/* <AboutPage /> */}
           </main>
 
           <LoginModal

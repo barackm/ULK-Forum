@@ -43,15 +43,6 @@ class ForumPage extends Component {
     this.setState({ showTagsCategorieModal: false });
   };
   handleSubmitPost = (post) => {
-    // toast("🦄 Wow so easy!", {
-    //   position: "top-right",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: true,
-    //   draggable: true,
-    //   progress: undefined,
-    // });
     const hashtagConfig = {
       trigger: "#",
       separator: " ",
@@ -87,11 +78,16 @@ class ForumPage extends Component {
         ) : (
           ""
         )}
-        {categorySelected && (
-          <div className="category-selected" style={{ backgroundColor }}>
-            <h1>{categorySelected}</h1>
-          </div>
-        )}
+
+        <div
+          className={
+            categorySelected ? "category-selected visible" : "category-selected"
+          }
+          style={{ backgroundColor }}
+        >
+          {categorySelected && <h1>{categorySelected}</h1>}
+        </div>
+
         <div className="forum-page-secondary-wrapper">
           <div className="forum-sidenav">
             <LeftMenu

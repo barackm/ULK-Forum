@@ -7,46 +7,40 @@ import {
 } from "draft-js";
 import Editor from "draft-js-plugins-editor";
 import { IoIosSend } from "react-icons/io";
-import { FaQuoteLeft, FaRegEdit, FaMinus, FaTimes } from "react-icons/fa";
-import { FiItalic } from "react-icons/fi";
-import { BsCodeSlash, BsTypeBold } from "react-icons/bs";
-import { MdFormatListBulleted } from "react-icons/md";
+import { FaMinus, FaTimes } from "react-icons/fa";
+
 import createMathjaxPlugin from "draft-js-mathjax-plugin";
 import createEmojiPlugin from "draft-js-emoji-plugin";
 import createImagePlugin from "draft-js-image-plugin";
 import createHashtagPlugin from "draft-js-hashtag-plugin";
 import createLinkifyPlugin from "draft-js-linkify-plugin";
-import "draft-js-emoji-plugin/lib/plugin.css";
-import "draft-js-image-plugin/lib/plugin.css";
-import "draft-js-linkify-plugin/lib/plugin.css";
-import "draft-js-hashtag-plugin/lib/plugin.css";
-
-import "./mentionsStyles.css";
-
 import createMentionPlugin, {
   defaultSuggestionsFilter,
 } from "draft-js-mention-plugin";
 import "draft-js-mention-plugin/lib/plugin.css";
-import {
-  AiOutlineOrderedList,
-  AiOutlineFontColors,
-  AiOutlineCompress,
-} from "react-icons/ai";
+import { AiOutlineCompress } from "react-icons/ai";
 import { IconContext } from "react-icons";
 import { FaPaperPlane } from "react-icons/fa";
 import { RiFullscreenLine } from "react-icons/ri";
-import "../../../node_modules/draft-js/dist/Draft.css";
-import "../../../node_modules/draft-js-image-plugin/lib/plugin.css";
-import "./editerStyles.css";
-
-import StyleButton from "./styledButton";
 import HeaderStyle from "./headerStyle";
 import TagsCategoriesModal from "../modals/tagsCategoriesModal";
 import CustomOption from "./customBtn";
 import { users } from "../../data/posts";
 import Entry from "./mentionEntry";
-import mentions from "./mentions";
 import AppAlert from "../common/alert";
+import BlockStyleControls from "./utils/BlockStyleControls";
+import InlineStyleControls from "./utils/InlineStyleControls";
+import getBlockStyle from "./utils/getBlockStyle";
+
+import "../../../node_modules/draft-js/dist/Draft.css";
+import "../../../node_modules/draft-js-image-plugin/lib/plugin.css";
+import "draft-js-emoji-plugin/lib/plugin.css";
+import "draft-js-image-plugin/lib/plugin.css";
+import "draft-js-linkify-plugin/lib/plugin.css";
+import "draft-js-hashtag-plugin/lib/plugin.css";
+import "./mentionsStyles.css";
+import "./editerStyles.css";
+import styleMap from "./utils/styleMap";
 
 class RichTextEditor extends React.Component {
   constructor(props) {
@@ -54,7 +48,6 @@ class RichTextEditor extends React.Component {
     this.state = {
       editorState: EditorState.createEmpty(),
       fullScreen: false,
-      suggestions: mentions,
       editorReduced: false,
       closeEdior: false,
       selectedTag: null,
@@ -334,7 +327,7 @@ class RichTextEditor extends React.Component {
                     <FaTimes />
                   </IconContext.Provider>
                 </div>
-                <div className="send-btn-icon" onClick={this.handleHideEditor}>
+                <div className="send-btn-icon" onClick={this.handleSubmit}>
                   <IconContext.Provider
                     value={{ className: "edito-modal-icon send" }}
                   >
@@ -406,7 +399,7 @@ class RichTextEditor extends React.Component {
         />
         <AppAlert
           message={alertMessage}
-          title="Error"
+          title="Alert"
           onHide={this.handleHideAlert}
           visible={showAlert}
         />
@@ -414,81 +407,5 @@ class RichTextEditor extends React.Component {
     );
   }
 }
-
-// Custom overrides for "code" style.
-const styleMap = {
-  CODE: {
-    backgroundColor: "rgba(0, 0, 0, 0.05)",
-    fontFamily: '"Inconsolata", "Menlo", "Consolas", monospace',
-    fontSize: 14,
-    padding: 2,
-  },
-};
-
-function getBlockStyle(block) {
-  switch (block.getType()) {
-    case "blockquote":
-      return "RichEditor-blockquote";
-    default:
-      return null;
-  }
-}
-
-const BLOCK_TYPES = [
-  { label: "Blockquote", style: "blockquote", icon: <FaQuoteLeft /> },
-  { label: "UL", style: "unordered-list-item", icon: <MdFormatListBulleted /> },
-  { label: "OL", style: "ordered-list-item", icon: <AiOutlineOrderedList /> },
-  { label: "Code Block", style: "code-block", icon: <BsCodeSlash /> },
-];
-
-const BlockStyleControls = (props) => {
-  const { editorState } = props;
-  const selection = editorState.getSelection();
-  const blockType = editorState
-    .getCurrentContent()
-    .getBlockForKey(selection.getStartKey())
-    .getType();
-
-  return (
-    <div className="RichEditor-controls">
-      {BLOCK_TYPES.map((type) => (
-        <StyleButton
-          icon={type.icon}
-          key={type.label}
-          active={type.style === blockType}
-          label={type.label}
-          onToggle={props.onToggle}
-          style={type.style}
-        />
-      ))}
-    </div>
-  );
-};
-
-var INLINE_STYLES = [
-  { label: "Bold", style: "BOLD", icon: <BsTypeBold /> },
-  { label: "Italic", style: "ITALIC", icon: <FiItalic /> },
-  { label: "Underline", style: "UNDERLINE", icon: <AiOutlineFontColors /> },
-  { label: "Monospace", style: "CODE", icon: <FaRegEdit /> },
-];
-
-const InlineStyleControls = (props) => {
-  const currentStyle = props.editorState.getCurrentInlineStyle();
-
-  return (
-    <div className="RichEditor-controls inline">
-      {INLINE_STYLES.map((type) => (
-        <StyleButton
-          icon={type.icon}
-          key={type.label}
-          active={currentStyle.has(type.style)}
-          label={type.label}
-          onToggle={props.onToggle}
-          style={type.style}
-        />
-      ))}
-    </div>
-  );
-};
 
 export default RichTextEditor;

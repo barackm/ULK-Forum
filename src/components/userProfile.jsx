@@ -46,8 +46,8 @@ class UserProfile extends Component {
   };
   componentDidMount() {
     const userId = this.props.match.params.userId;
-    const user = users.filter((user) => user.id === userId);
-    const _posts = posts.filter((post) => post.userId === user[0].id);
+    const user = users.filter((user) => user._id === userId);
+    const _posts = posts.filter((post) => post.userId === user[0]._id);
 
     if (user.length === 0) return <Redirect to="/" />;
     this.setState({ user: user[0], posts: _posts });
@@ -159,7 +159,7 @@ class UserProfile extends Component {
                   {links.map((l) => (
                     <div
                       to={l.path}
-                      key={l.id}
+                      key={l._id}
                       className={
                         selectedLink === l.name ? "link active-link" : "link"
                       }

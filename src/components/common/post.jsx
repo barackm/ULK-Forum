@@ -26,7 +26,7 @@ class Post extends Component {
   handlHidePostControls = () => {};
   render() {
     const { postControls, post } = this.props;
-    const user = users.filter((user) => user.id === post.userId);
+    const user = users.filter((user) => user._id === post.userId);
     const newUser = user[0];
 
     return (

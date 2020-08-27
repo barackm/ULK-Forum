@@ -110,5 +110,3 @@ export default class CustomMentionEditor extends Component {
     );
   }
 }
-
-// export default positionSuggestions

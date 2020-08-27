@@ -7,13 +7,13 @@ import truncatedStr from "../utils/getTruncatedString";
 class DiscussionItem extends Component {
   render() {
     const { post, users, categories } = this.props;
-    const user = users.filter((user) => user.id === post.userId);
+    const user = users.filter((user) => user._id === post.userId);
     const category = categories.filter(
-      (category) => category.id === post.categoryId
+      (category) => category._id === post.categoryId
     );
 
     return (
-      <Link to={`/post/${post.id}`} className="discussion-item-main-wrapper">
+      <Link to={`/post/${post._id}`} className="discussion-item-main-wrapper">
         <div className="discussion-profile-wrapper">
           <div
             className="dicussion-profile"

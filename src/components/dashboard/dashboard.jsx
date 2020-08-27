@@ -3,7 +3,10 @@ import React, { Component } from "react";
 import DashboardSidebar from "./dashboardSidebar";
 import DashboardStatistics from "./dashboardStatistics";
 import DashboardNavbar from "./dashboardNavbar";
-
+import UsersPage from "./usersPage";
+import PostsPage from "./postsPage";
+import { Route } from "react-router-dom";
+import Switch from "react-bootstrap/esm/Switch";
 class Dashboard extends Component {
   state = {
     navbarToggled: false,
@@ -20,7 +23,7 @@ class Dashboard extends Component {
   };
   render() {
     const { navbarToggled, selectedLink } = this.state;
-    const { onToggleMenu } = this.props;
+    const { onToggleMenu, history, match } = this.props;
     return (
       <div className="dashboard-main-wrapper">
         <DashboardNavbar
@@ -36,6 +39,7 @@ class Dashboard extends Component {
           }
         >
           <DashboardSidebar
+            match={match}
             selectedLink={selectedLink}
             onSelectLink={this.handlSelectLink}
             navbarToggled={navbarToggled}
@@ -43,8 +47,22 @@ class Dashboard extends Component {
           />
         </div>
         <div className="dashboard-main">
-          <DashboardStatistics />
-          {/* <UsersList /> */}
+          {/* <Switch> */}
+          <Route
+            exact
+            path={`${match.path}/`}
+            render={(props) => <DashboardStatistics {...props} />}
+          />
+          <Route
+            exact
+            path={`${match.path}/users`}
+            render={(props) => <UsersPage {...props} />}
+          />
+          <Route
+            exact
+            path={`${match.path}/posts`}
+            render={(props) => <PostsPage {...props} />}
+          />
         </div>
       </div>
     );

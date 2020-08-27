@@ -79,14 +79,14 @@
   outline: none;
   transition: all 0.3s;
   margin-top: 20px;
-
+  cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.274);
 }
 .link-dashboard:not(:nth-child(1)) {
   margin-top: 0;
 }
 
-.link-dashboard.active {
+.link-dashboard.active-link {
   /* background-color: #555555; */
   background-color: rgba(255, 255, 255, 0.397);
   border: none;
@@ -158,6 +158,12 @@
   }
   .link-dashboard:not(:nth-child(1)) {
     margin-top: 0;
+  }
+  .users-list-secondary-container {
+    padding-top: 60px;
+  }
+  .users-list-header {
+    width: calc(100% - 180px) !important;
   }
 }
 
@@ -264,6 +270,12 @@
   .dashboard-profile-wrapper-image h3 {
     font-size: 14px;
     color: var(--white);
+  }
+  .users-list-secondary-container {
+    padding-top: 60px;
+  }
+  .users-list-header {
+    width: 100% !important;
   }
 }
 .link-dashboard.end {
@@ -430,14 +442,19 @@
   justify-content: center;
   align-items: center;
   overflow-x: hidden !important;
-
+  min-height: 560px;
+  padding-top: 50px !important;
   /* overflow-x: hidden; */
 }
 .users-list-header {
   height: 50px;
-  width: 100%;
+  position: fixed;
+  top: 50px;
+  right: 0;
+  width: calc(100% - 250px);
   display: flex;
   background-color: var(--white);
+  z-index: 9;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.507);
 }
 .users-list-secondary-container {
@@ -503,7 +520,9 @@
     padding: 2px 5px;
     font-size: 18px;
   }
-
+  .users-list-input {
+    width: 50%;
+  }
   .users-count span {
     margin-right: 5px;
     font-size: 14px;
@@ -548,7 +567,7 @@
 }
 .users-list-table {
   width: 95%;
-  min-height: 100vh;
+  min-height: auto;
   display: flex;
   text-align: center;
 }
@@ -590,12 +609,16 @@ table {
   overflow: hidden;
   border-radius: 5px;
 }
+.sort-icon {
+  margin-left: 5px;
+}
 table * {
   position: relative;
 }
 table td,
 table th {
   padding-left: 8px;
+  cursor: pointer;
 }
 table thead tr {
   height: 50px;
@@ -712,24 +735,55 @@ tbody tr:hover {
     top: 0;
   }
   table tbody tr td:nth-child(1):before {
-    content: "Date";
+    content: "First Name";
   }
   table tbody tr td:nth-child(2):before {
-    content: "Order ID";
+    content: "Last Name";
   }
   table tbody tr td:nth-child(3):before {
-    content: "Name";
+    content: "Joined at";
   }
   table tbody tr td:nth-child(4):before {
-    content: "Price";
+    content: "Posts";
   }
   table tbody tr td:nth-child(5):before {
-    content: "Quantity";
+    content: "View Profile";
   }
   table tbody tr td:nth-child(6):before {
-    content: "Total";
+    content: "Admin";
+  }
+  table tbody tr td:nth-child(7):before {
+    content: "Delete";
   }
 
+  table tbody tr .column1.post::before {
+    position: absolute;
+    font-size: 14px;
+    color: #999999;
+    line-height: 1.2;
+    font-weight: unset;
+    width: 40%;
+    left: 30px;
+    top: 0;
+  }
+  table tbody tr .column1.post:nth-child(1)::before {
+    content: "Owner";
+  }
+  table tbody tr .column2.post:nth-child(2)::before {
+    content: "Title";
+  }
+  table tbody tr .column3.post:nth-child(3)::before {
+    content: "Posted at";
+  }
+  table tbody tr .column4.post:nth-child(4)::before {
+    content: "Comments";
+  }
+  table tbody tr .column5.post:nth-child(5)::before {
+    content: "View";
+  }
+  table tbody tr .column6.post:nth-child(6)::before {
+    content: "Delete";
+  }
   .column4,
   .column5,
   .column6 {
@@ -777,7 +831,11 @@ tbody tr:hover {
   background-color: red;
   padding: 5px 20px;
 }
-
+@media (max-width: 480px) {
+  .users-list-input {
+    width: 90%;
+  }
+}
 /* end dashboard uses list styles  */
 
 /* dashboard navbar styles  */
@@ -959,3 +1017,35 @@ tbody tr:hover {
   }
 }
 /* end dashboard navbar styles  */
+/* pagination style  */
+.pagination-wrapper {
+  margin: 50px;
+  margin-top: 0px;
+  display: flex;
+}
+.pagination-item {
+  height: 40px;
+  min-width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.pagination-item.active {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+.pagination-item:not(:last-child) {
+  margin-right: 1px;
+}
+.pagination-item:first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+.pagination-item:last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+/* end pagination styles  */

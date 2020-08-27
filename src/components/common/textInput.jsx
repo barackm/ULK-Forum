@@ -12,7 +12,6 @@ const TextInput = ({ placeholder, name, type = "text", icon, ...rest }) => {
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
-  console.log(errors);
   const newInputType = type === "password" && !showPassword ? type : "text";
 
   return (

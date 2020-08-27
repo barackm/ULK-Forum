@@ -38,7 +38,7 @@
   max-height: 100% !important;
   border-radius: 0;
   margin: 0;
-  z-index: 9999;
+  z-index: 999;
   border: none;
   margin-left: 0 !important;
 }
@@ -407,6 +407,62 @@
     border-top: none !important;
     border-radius: 0px !important;
     margin-left: 0 !important;
+  }
+  .RichEditor-root.full-screen {
+    width: 100%;
+    top: 0;
+    z-index: 9999;
+    height: 380px !important;
+    overflow-y: hidden;
+    border-top: none !important;
+    border-radius: 0px !important;
+    margin-left: 0 !important;
+  }
+  .RichEditor-root.reduced {
+    width: 100%;
+    top: 0;
+    z-index: 9999;
+    height: 380px !important;
+    overflow-y: hidden;
+    border-top: none !important;
+    border-radius: 0px !important;
+    margin-left: 0 !important;
+  }
+  .RichEditor-root.full-screen .editor-category-section {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    height: 120px;
+    width: 100%;
+    text-align: left;
+  }
+  .RichEditor-root.full-screen
+    .editor-category-section
+    .editor-modal-controlls
+    .btn:not(:nth-child(2)) {
+    display: none;
+  }
+  .RichEditor-root.full-screen
+    .editor-category-section
+    .editor-modal-controlls
+    .btn.cancel-btn {
+    display: block;
+  }
+  .RichEditor-root.full-screen
+    .editor-category-section
+    .editor-modal-controlls
+    .btn:nth-child(2) {
+    position: absolute;
+    right: 2%;
+    top: 20px;
+  }
+  .RichEditor-root.full-screen .RichEditor-editor {
+    width: 95%;
+  }
+  .RichEditor-root.full-screen .controls-wrapper {
+    width: 100%;
+    bottom: 15px;
+    border: none;
   }
   .btn.cancel-btn {
     margin-left: 20px;

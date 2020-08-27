@@ -15,7 +15,7 @@ class PostList extends Component {
     return (
       <>
         {posts.map((post) => (
-          <div key={post.id}>
+          <div key={post._id}>
             <Post
               postControls={() => <PostControls post={post} />}
               onShowUser={onShowUser}
