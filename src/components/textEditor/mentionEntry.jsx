@@ -41,8 +41,8 @@ class Entry extends React.Component {
           </div>
 
           <div className="mention-details-wrapper">
-            <div className="mention-name">{mention.name}</div>
-            <div className="mention-title">{mention.lastName}</div>
+            <div className="mention-name">{mention.userName}</div>
+            {/* <div className="mention-title">{mention.lastName}</div> */}
           </div>
         </div>
       </div>

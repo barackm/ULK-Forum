@@ -6,9 +6,13 @@ import { IoIosNotificationsOutline } from "react-icons/io";
 
 import logo from "../media/ULK_Logo.png";
 import "./styles/main.css";
+// import AuthLinks from "./authLinks";
+import LoginLinks from "./loginLinks";
 
 class Navigation extends Component {
-  state = {};
+  state = {
+    loginLinksToggled: false,
+  };
   handleHideMenu = () => {
     this.props.onHideMenu();
   };
@@ -20,8 +24,12 @@ class Navigation extends Component {
     this.props.onHideMenu();
     this.props.onOpenSignupModal();
   };
+  handleToggleNavLinks = () => {
+    this.setState({ loginLinksToggled: !this.state.handleToggleNavLinks });
+  };
   render() {
-    const { menuToggled } = this.props;
+    const { menuToggled, onSearch, value } = this.props;
+    // const { loginLinksToggled } = this.state;
     return (
       <div
         className={
@@ -41,11 +49,10 @@ class Navigation extends Component {
           <div className="links-wrapper">
             <ul>
               <li>
-                <NavLink to="/" onClick={this.handleHideMenu}>
+                <NavLink to="/about" onClick={this.handleHideMenu}>
                   About
                 </NavLink>
               </li>
-
               <li>
                 <NavLink to="/" onClick={this.handleHideMenu}>
                   <IconContext.Provider value={{ className: "link-icon" }}>
@@ -59,19 +66,18 @@ class Navigation extends Component {
               <IconContext.Provider value={{ className: "search-icon" }}>
                 <BsSearch />
               </IconContext.Provider>
-              <input type="text" placeholder="Search..." />
+              <input
+                type="text"
+                placeholder="Search..."
+                value={value}
+                onChange={onSearch}
+              />
             </div>
-            <div className="nav-buttons-container">
-              <span className="login-btn" onClick={this.handleShowLoginModal}>
-                Log in
-              </span>
-              <span
-                className="sign-up-btn"
-                onClick={this.handleShowSighUpModal}
-              >
-                Sign up
-              </span>
-            </div>
+            {/* <AuthLinks
+              onShowSignUpModal={this.handleShowSighUpModal}
+              onShowLoginModal={this.handleShowLoginModal}
+            /> */}
+            <LoginLinks onCloseNavbar={() => this.props.onHideMenu()} />
           </div>
         </div>
       </div>

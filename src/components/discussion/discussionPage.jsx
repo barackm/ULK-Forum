@@ -37,9 +37,13 @@ class DiscussionPage extends Component {
     this.setState({ showCategories: !this.state.showCategories });
   };
   filteredCategories = (category, posts) => {
-    console.log("the cattegory", Object.keys(category).length);
     if (!category || Object.keys(category).length === 0) return posts;
     return posts.filter((post) => post.categoryId === category._id);
+  };
+  getSearchedPosts = (posts, searchValue) => {
+    return posts.filter((post) =>
+      post.title.toLowerCase().startsWith(searchValue.trim().toLowerCase())
+    );
   };
   render() {
     const categories1 = [
@@ -55,12 +59,13 @@ class DiscussionPage extends Component {
       posts,
       categories,
     } = this.state;
-    const { category } = this.props;
+    const { category, searchValue } = this.props;
+
     const dropdownBtnClasses = showCategories
       ? "dropdown-btn toggled"
       : "dropdown-btn";
-
-    const newPosts = this.filteredCategories(category, posts);
+    const searchedPosts = this.getSearchedPosts(posts || [], searchValue);
+    const newPosts = this.filteredCategories(category, searchedPosts);
     return (
       <div className="discussion-page-wrapper">
         <div className="discussion-page-header">

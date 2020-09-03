@@ -10,16 +10,11 @@ class UsersTable extends Component {
   columns = [
     {
       id: 1,
-      name: "firstName",
-      path: "firstName",
+      name: "User Name",
+      path: "userName",
       className: "column1 ",
     },
-    {
-      id: 2,
-      name: "Last name",
-      path: "lastName",
-      className: "column2",
-    },
+
     {
       id: 3,
       name: "Joined at",

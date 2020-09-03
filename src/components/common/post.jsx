@@ -25,7 +25,7 @@ class Post extends Component {
   };
   handlHidePostControls = () => {};
   render() {
-    const { postControls, post } = this.props;
+    const { postControls, post, onComment } = this.props;
     const user = users.filter((user) => user._id === post.userId);
     const newUser = user[0];
 
@@ -36,7 +36,7 @@ class Post extends Component {
             <div className="post-detail-profile">
               <div className="post-profile">
                 <Link
-                  to="/"
+                  to={`/profile/${newUser.userName}`}
                   className="post-owner"
                   onMouseEnter={this.handleShowUser}
                   style={{ backgroundColor: newUser.color }}
@@ -50,11 +50,12 @@ class Post extends Component {
 
                 <div to="/" className="post-timing-details">
                   <Link
-                    to="/"
+                    to={`/profile/${newUser.userName}`}
                     className="owner-details"
                     onMouseEnter={this.handleShowUser}
+                    // onMouseLeave={this.handleHideUser}
                   >
-                    {newUser.firstName}
+                    {newUser.userName}
                   </Link>
                   <div className="timing">
                     <span>12 Hours ago</span>
@@ -72,7 +73,7 @@ class Post extends Component {
                 <div className="post-btn">
                   <div className="post-like-btn-wrapper">
                     <span>Like</span>
-                    <span>Reply</span>
+                    <span onClick={onComment}>Reply</span>
                   </div>
                   {postControls && (
                     <div className="controlls-post-wrapper">

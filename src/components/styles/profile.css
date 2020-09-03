@@ -13,18 +13,20 @@
   background-color: var(--white);
   position: relative;
   overflow: hidden;
+  /* z-index: -1; */
 }
 .user-profile-b {
   position: absolute;
   width: 100%;
   height: 100%;
-  /* z-index: -1; */
+  z-index: 1;
 }
 .use-profile-container {
   width: 90%;
   min-height: 500px;
   display: flex;
   overflow-x: hidden !important;
+  z-index: 99;
   /* background-color: #959393; */
 }
 .post-controll-index-wrapper {
@@ -44,31 +46,44 @@
   position: relative;
 }
 .user-profile-sidebar {
-  width: 300px;
+  width: 200px;
   position: relative;
   min-height: 400px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   text-align: left;
-
   border-top: none;
 }
+/* .image-upload-wrapper {
+  width: 100px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+} */
 .user-profile-img {
-  position: absolute;
-  width: 140px;
-  height: 140px;
+  position: relative !important;
+  width: 100px;
+  height: 100px;
+  left: 100px;
   border-radius: 50%;
   border: 3px solid var(--white);
-  top: -70px;
+  top: 90px;
   background-color: #d70206;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   color: var(--white);
-  /* z-index: 1; */
   overflow: hidden;
+  z-index: 9 !important;
+  cursor: pointer;
+  /* display: none; */
 }
+
 .user-profile-img span {
   font-size: 40px;
   font-weight: 600;
@@ -82,8 +97,11 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  /* justify-content: flex-start; */
+  /* align-items: center; */
+}
+.user-profile-sidebar-wjtxg {
+  display: flex;
 }
 .user-profile-identity h2 {
   line-height: 0.5;
@@ -97,8 +115,9 @@
 }
 .post-length {
   background-color: #fc427b;
-  padding: 2px 8px;
-  border-radius: 50%;
+  padding: 2px 5px;
+  border-radius: 5px;
+  margin-left: 15px;
   color: var(--white);
 }
 .image-profile-wrapper {
@@ -137,12 +156,12 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding-left: 100px;
+  /* padding-left: 100px; */
   margin-top: 30px;
   transition: all 0.4s;
 }
 .user-profile-content {
-  padding-left: 50px;
+  width: calc(100% - 400px);
 }
 .side-links-profile .link {
   color: var(--primary-color);
@@ -156,6 +175,24 @@
 .side-links-profile .link .profile-side-icon {
   margin-right: 10px;
   font-size: 20px;
+}
+@media (max-width: 990px) {
+  .user-profile-sidebar {
+    width: 200px;
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    border-top: none;
+  }
+  .user-profile-content {
+    width: calc(100% - 200px);
+  }
+  .post-container {
+    margin-right: 0;
+  }
 }
 @media (max-width: 800px) {
   .user-profile-sidebar {
@@ -178,18 +215,21 @@
   }
   .user-profile-img {
     position: absolute;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
+    left: 90px;
     border-radius: 50%;
     border: 3px solid var(--white);
-    top: -150px;
-    left: 50px;
+    top: 60px;
     background-color: #d70206;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--white);
     overflow: hidden;
+    z-index: 99 !important;
+    cursor: pointer;
+    /* display: none; */
   }
   .user-profile-img span {
     font-size: 16px;
@@ -288,5 +328,37 @@
     font-weight: 600;
     z-index: 10;
   }
+  .user-profile-img {
+    width: 60px;
+    height: 60px;
+    left: 60px;
+    top: 60px;
+  }
 }
 /* end user profile  */
+/* image upload  */
+
+input[type="file"] {
+  display: none !important;
+  position: absolute;
+  cursor: pointer;
+}
+.custom-file-upload {
+  position: absolute;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 0;
+  cursor: pointer !important;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0000008a;
+  z-index: 999;
+}
+.upload-image-icon {
+  font-size: 20px;
+}
+/* end image upload  */

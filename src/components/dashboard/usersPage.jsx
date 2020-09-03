@@ -10,7 +10,7 @@ import Pagination from "../common/pagination";
 class UsersPage extends Component {
   state = {
     searchQuery: "",
-    sortColumn: { path: "firstName", order: "asc" },
+    sortColumn: { path: "userName", order: "asc" },
     currentPage: 1,
     pageCount: 8,
   };
@@ -30,7 +30,7 @@ class UsersPage extends Component {
     this.setState({ currentPage: page });
   };
   handleViewUser = (user) => {
-    return this.props.history.push(`/profile/${user._id}`);
+    return this.props.history.push(`/profile/${user.userName}`);
   };
   getUsersPosts = (users, posts) => {
     let _users = [];
@@ -45,10 +45,8 @@ class UsersPage extends Component {
   render() {
     const { sortColumn, searchQuery, currentPage, pageCount } = this.state;
     const newUsers = this.getUsersPosts(users, posts);
-    const searchedUsers = newUsers.filter(
-      (user) =>
-        user.firstName.toLowerCase().startsWith(searchQuery.toLowerCase()) ||
-        user.lastName.toLowerCase().startsWith(searchQuery.toLowerCase())
+    const searchedUsers = newUsers.filter((user) =>
+      user.userName.toLowerCase().startsWith(searchQuery.toLowerCase())
     );
 
     const pagedUsers = paginate(searchedUsers, currentPage, pageCount + 1);

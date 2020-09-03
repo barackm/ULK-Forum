@@ -163,7 +163,7 @@
 }
 
 .RichEditor-activeButton {
-  color: var(--primary-color);
+  color: #222222;
 }
 
 .controls-wrapper {
@@ -239,9 +239,10 @@
 }
 .send-btn-icon {
   display: none;
+  cursor: pointer;
 }
 .edito-modal-icon.send {
-  font-size: 25px;
+  font-size: 20px;
 }
 .editor-modal-controlls {
   display: flex;
@@ -360,6 +361,7 @@
   align-items: center;
   margin-top: -10px !important;
   margin-left: 10px;
+  margin-right: 20px !important;
 }
 
 .draftJsMentionPlugin__mentionSuggestions__2DWjA {
@@ -402,7 +404,7 @@
     width: 100%;
     top: 0;
     z-index: 9999;
-    height: 380px !important;
+    height: 300px !important;
     overflow-y: hidden;
     border-top: none !important;
     border-radius: 0px !important;
@@ -436,6 +438,14 @@
     width: 100%;
     text-align: left;
   }
+  .editor-backward {
+    display: none;
+  }
+
+  .editor-backward.hide {
+    display: inline !important;
+  }
+
   .RichEditor-root.full-screen
     .editor-category-section
     .editor-modal-controlls
@@ -483,6 +493,9 @@
     height: 120px;
     width: 100%;
     text-align: left;
+  }
+  .editor-category-section.comment {
+    height: 50px;
   }
   .input-category-wrapper {
     flex-direction: column;
@@ -540,7 +553,7 @@
     width: 100%;
     top: 0;
     z-index: 9999;
-    height: 380px !important;
+    height: 300px !important;
     overflow-y: hidden;
     border-top: none !important;
     border-radius: 0px !important;
@@ -572,4 +585,21 @@
   background-color: orange;
   /* position: absolute; */
   width: 300px;
+}
+
+.editor-backward.hide {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .RichEditor-root.re-reduce {
+    bottom: -330px;
+    top: auto !important;
+  }
+  .navbar-text-editor-icon-wrapper {
+    margin-right: 15px !important;
+  }
+  .navbar-hamberger-wrapper {
+    margin-left: 15px !important ;
+  }
 }

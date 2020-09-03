@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { Detector } from "react-detect-offline";
 
 import Navigation from "./components/navigation";
 import ForumPage from "./components/forumPage";
@@ -28,9 +29,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import AppAlert from "./components/common/alert";
 import AboutPage from "./components/about/aboutPage";
-import DashboardStatistics from "./components/dashboard/dashboardStatistics";
-import UsersPage from "./components/dashboard/usersPage";
-import PostsPage from "./components/dashboard/postsPage";
+import AboutUsPage from "./aboutUs/aboutUsPage";
 
 class App extends Component {
   state = {
@@ -38,6 +37,10 @@ class App extends Component {
     showSignupModal: false,
     showTagsCategorieModal: false,
     menuToggled: false,
+    searchQuery: "",
+    background: "",
+    categorySelected: "",
+    category: {},
   };
   handleOpenLoginModal = () => {
     const body = document.querySelector("body");
@@ -76,15 +79,50 @@ class App extends Component {
   handleHideMenu = () => {
     this.setState({ menuToggled: false });
   };
+  handleSearchPost = (e) => {
+    this.setState({
+      searchQuery: e.target.value,
+      background: "",
+      categorySelected: "",
+      category: {},
+    });
+  };
+  handleResetSearchQuery = () => {
+    this.setState({ searchQuery: "" });
+  };
+  handleChangeCategory = (category) => {
+    this.setState({
+      background: category.color,
+      categorySelected: category.name,
+      category,
+      searchQuery: "",
+    });
+  };
+  getCurrentUserStatus = (isOnline) => {
+    if (isOnline) {
+    } else {
+    }
+    return <div></div>;
+  };
   render() {
     const {
       showTagsCategorieModal,
       showSignupModal,
       showLoginModal,
       menuToggled,
+      searchQuery,
+      category,
+      categorySelected,
+      background,
     } = this.state;
+
     return (
       <>
+        <Detector
+          render={({ online }) => {
+            return this.getCurrentUserStatus(online);
+          }}
+        />
         <ToastContainer />
         <div className="App">
           {showLoginModal || showSignupModal ? (
@@ -101,6 +139,8 @@ class App extends Component {
           )}
 
           <Navigation
+            onSearch={this.handleSearchPost}
+            value={searchQuery}
             menuToggled={menuToggled}
             onOpenLoginModal={this.handleOpenLoginModal}
             onOpenSignupModal={this.handleOpenSignupModal}
@@ -110,14 +150,15 @@ class App extends Component {
             <Switch>
               <Route path="/post/:_id" component={PostDetails} />
               <Route
-                path="/profile/:userId"
+                path="/profile/:userName"
                 render={(props) => (
                   <UserProfile
                     {...props}
                     onToggleMenu={this.handleToggleMenu}
                   />
                 )}
-              ></Route>
+              />
+
               <Route
                 path="/dashboard"
                 render={(props) => (
@@ -129,6 +170,12 @@ class App extends Component {
                 render={(props) => (
                   <ForumPage
                     {...props}
+                    background={background}
+                    category={category}
+                    categorySelected={categorySelected}
+                    onChangeCategory={this.handleChangeCategory}
+                    onResetSeachQuery={this.handleResetSearchQuery}
+                    searchValue={searchQuery}
                     onToggleMenu={this.handleToggleMenu}
                     categoriesShown={showTagsCategorieModal}
                     onCloseCategorie={this.handleCloseTagsCategoriesModal}
@@ -137,6 +184,7 @@ class App extends Component {
                 )}
               />
               <Route path="/not-found" component={NotFoundPage} />
+              <Route path="/about" component={AboutPage} />
               <Redirect from="/" to="/discussions" />
               <Redirect to="/not-found" />
             </Switch>

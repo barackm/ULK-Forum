@@ -1,17 +1,31 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-
-import { posts, categories } from "../../data/posts";
+// import draftToHtml from "draftjs-to-html";
+import { posts, categories, comments, users } from "../../data/posts";
 import CommentsList from "../comments/commentsList";
 import NavbarBack from "../common/navbarBack";
 import Post from "../common/post";
 import truncatedStr from "../utils/getTruncatedString";
+import RichTextEditor from "../textEditor/richTextEditor";
+import AppAlert from "../common/alert";
+import { IconContext } from "react-icons";
+import { TiArrowBack } from "react-icons/ti";
+import { Link } from "react-scroll";
 
 class PostDetails extends Component {
   state = {
     UserTooltipVisible: false,
     post: {},
     category: {},
+    background: "",
+    categorySelected: "",
+    showEditor: false,
+    showTagsCategorieModal: false,
+    categoriesModalShown: false,
+    currentText: "",
+    alertMessage: "",
+    showAlert: false,
+    reduceEditor: false,
   };
 
   componentDidMount() {
@@ -36,10 +50,80 @@ class PostDetails extends Component {
   handleHideUser = () => {
     this.setState({ UserTooltipVisible: false });
   };
-
+  handleToggleEditor = () => {
+    this.setState({ showEditor: !this.state.showEditor });
+  };
+  handleShowEditor = () => {
+    this.setState({ showEditor: true });
+  };
+  handleHideEditor = () => {
+    this.setState({ showEditor: false });
+  };
+  handleShowTagsCategoriesModal = () => {
+    this.setState({
+      showTagsCategorieModal: !this.state.showTagsCategorieModal,
+    });
+  };
+  handleCloseTagsCategoriesModal = () => {
+    this.setState({ showTagsCategorieModal: false });
+  };
+  handleSubmitPost = (data) => {
+    console.log(data);
+  };
+  handleChangeCategory = () => {
+    this.setState({ categoriesModalShown: !this.state.categoriesModalShown });
+  };
+  handlHideCategoryModal = () => {
+    this.setState({ categoriesModalShown: false });
+  };
+  handleShowAlert = () => {
+    this.setState({ showAlert: true });
+  };
+  handleHideAlert = () => {
+    this.setState({ showAlert: false });
+  };
+  handleReduceTextEditor = () => {
+    const editor = document.querySelector(".RichEditor-root");
+    this.setState({ reduceEditor: !this.state.reduceEditor });
+    if (!this.state.reduceEditor) {
+      editor.classList.add("re-reduce");
+    } else {
+      editor.classList.remove("re-reduce");
+    }
+  };
+  postBackward = (post) => {
+    return (
+      <div className="post-details-backward">
+        <Link
+          onClick={this.handleReduceTextEditor}
+          activeClass="active"
+          to="post-details"
+          spy={true}
+          smooth={true}
+          offset={-70}
+          duration={500}
+        >
+          <IconContext.Provider
+            value={{ className: "post-details-icon-backward" }}
+          >
+            <TiArrowBack />
+          </IconContext.Provider>
+          {truncatedStr(post.title || "Back to original post", 50)}
+        </Link>
+      </div>
+    );
+  };
   render() {
-    const { UserTooltipVisible, post, category } = this.state;
-    console.log(category);
+    const {
+      UserTooltipVisible,
+      post,
+      category,
+      showTagsCategorieModal,
+      alertMessage,
+      showAlert,
+    } = this.state;
+    const postComments = comments.filter((c) => c.postId === post._id);
+
     return (
       <div className="post-details-wrapper">
         <NavbarBack path="/" />
@@ -54,25 +138,47 @@ class PostDetails extends Component {
             {truncatedStr(post.title || "welcome", 50)}
           </h4>
         </div>
-        <div className="post-details-container">
+        <div className="post-details-container" id="post-details">
           <Post
+            onComment={this.handleToggleEditor}
             post={post}
             postControls={this.PostControls}
             onShowUser={this.handleShowUser}
             UserTooltipVisible={UserTooltipVisible}
             onHideUser={this.handleHideUser}
+            commentsNumber={postComments.length}
           />
           <div className="post-detail-comment">
             <div className="post-sidebar-wrapper">
-              <div className="add-comment-btn">
+              <div
+                className="add-comment-btn"
+                onClick={this.handleToggleEditor}
+              >
                 <span>Add comment</span>
               </div>
             </div>
           </div>
           <div className="comments-wrapper">
-            <CommentsList />
+            <CommentsList comments={postComments} users={users} />
           </div>
         </div>
+
+        <RichTextEditor
+          comment={() => this.postBackward(post)}
+          onSubmit={this.handleSubmitPost}
+          onCloseCategorie={this.handleCloseTagsCategoriesModal}
+          onShowCategories={this.handleShowTagsCategoriesModal}
+          categoriesShown={showTagsCategorieModal}
+          showEditor={!this.state.showEditor}
+          onHideEditor={this.handleHideEditor}
+        />
+
+        <AppAlert
+          message={alertMessage}
+          title="Alert"
+          onHide={this.handleHideAlert}
+          visible={showAlert}
+        />
       </div>
     );
   }

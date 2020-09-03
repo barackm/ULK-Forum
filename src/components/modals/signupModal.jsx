@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as Yup from "yup";
 import { FaUserGraduate } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
-import { MdEmail, MdPermContactCalendar } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 import { IconContext } from "react-icons";
 import { FcGoogle } from "react-icons/fc";
 
@@ -14,8 +14,7 @@ import SubmitButton from "../common/submitButton";
 class SignupModal extends Component {
   validationSchema = Yup.object().shape({
     email: Yup.string().email().required().label("Email"),
-    name: Yup.string().min(3).required().label("Name"),
-    lastName: Yup.string().min(3).required().label("Last name"),
+    userName: Yup.string().min(3).required().label("Name"),
     password: Yup.string().min(4).required().label("Password"),
   });
   render() {
@@ -53,23 +52,17 @@ class SignupModal extends Component {
                     initialValues={{
                       email: "",
                       password: "",
-                      name: "",
-                      lastName: "",
+                      userName: "",
                     }}
                     validationSchema={this.validationSchema}
                     onSubmit={(values) => console.log("form submited")}
                   >
                     <TextInput
-                      placeholder="Name"
-                      name="name"
+                      placeholder="User name"
+                      name="userName"
                       icon={<FaUserGraduate />}
                     />
 
-                    <TextInput
-                      placeholder="Lastname"
-                      name="lastName"
-                      icon={<MdPermContactCalendar />}
-                    />
                     <TextInput
                       placeholder="Email"
                       name="email"

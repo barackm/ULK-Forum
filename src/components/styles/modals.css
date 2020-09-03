@@ -220,7 +220,13 @@ input {
 .password-btn {
   /* margin-bottom: 20px !important; */
 }
-
+.text-input-input {
+  height: 100%;
+}
+.text-input-input input {
+  height: 100%;
+  outline: 0px !important;
+}
 @media (max-width: 800px) {
   .login-modal-wrapper {
     position: fixed;
@@ -261,6 +267,7 @@ input {
   }
   .text-input-input input {
     width: 100% !important;
+    height: 100% !important;
   }
 }
 /* end login modal  */
@@ -586,9 +593,9 @@ input {
   overflow: hidden;
 }
 .user-tool-tip-profile .user span {
-  font-size: 30px;
-  font-weight: 600;
-  color: var(--white);
+  font-size: 30px !important;
+  font-weight: 600 !important;
+  color: var(--white) !important;
 }
 .user-tool-tip-details {
   color: var(--white);
@@ -620,14 +627,16 @@ input {
   height: 100%;
 }
 .posted-at h3 {
-  font-size: 14px;
-  font-weight: 500;
-  margin-left: 10px;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin-left: 10px !important;
 }
 .posted-at span {
-  font-size: 14px;
-  font-weight: 500;
-  margin-left: 0px;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin-left: 0px !important;
+  text-transform: none !important;
+  color: var(--white) !important;
 }
 
 @media (max-width: 800px) {
@@ -654,7 +663,7 @@ input {
   }
 
   .name {
-    font-size: 16px;
+    font-size: 16px !important;
   }
   .posted-at {
     display: flex;
@@ -668,14 +677,14 @@ input {
     height: 100%;
   }
   .posted-at h3 {
-    font-size: 11px;
-    font-weight: 400;
-    margin-left: 10px;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    margin-left: 10px !important;
   }
   .posted-at span {
-    font-size: 11px;
-    font-weight: 400;
-    margin-left: 0px;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    margin-left: 0px !important;
   }
   .tags-modal {
     position: absolute;
@@ -837,3 +846,17 @@ input {
   }
 }
 /* end alert styles  */
+
+/* online indicator  */
+.online-indicator-wrapper {
+  display: flex;
+  align-items: center;
+}
+.online-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: greenyellow;
+  margin: 0 10px;
+}
+/* end online indicator  */

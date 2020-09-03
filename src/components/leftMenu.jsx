@@ -20,7 +20,7 @@ class LeftMenu extends Component {
   };
   render() {
     const { btnColor, activeCategory } = this.state;
-    const { categories, categoriesModalShown } = this.props;
+    const { categories, categoriesModalShown, category } = this.props;
 
     return (
       <div
@@ -63,7 +63,7 @@ class LeftMenu extends Component {
         <div className="sidebar-categories-wrapper">
           {categories.map((c) => (
             <div
-              key={c.id}
+              key={c._id}
               className={
                 activeCategory === c.name
                   ? "category-item selected"

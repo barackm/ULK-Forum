@@ -24,7 +24,7 @@ class UserTooltip extends Component {
           >
             <div className="user-tool-tip-profile">
               <Link
-                to={`/profile/${user._id}`}
+                to={`/profile/${user.userName}`}
                 className="user"
                 style={{ backgroundColor: user.color }}
               >
@@ -41,17 +41,29 @@ class UserTooltip extends Component {
               </Link>
             </div>
             <div className="user-tool-tip-details">
-              <Link to={`/profile/${user._id}`} className="name">
-                {user.firstName + " " + user.lastName}
+              <Link to={`/profile/${user.userName}`} className="name">
+                {user.userName}
               </Link>
               <div className="posted-at">
-                <IconContext.Provider
-                  value={{ className: "user-tool-tip-icon" }}
-                >
-                  <IoMdTime />
-                </IconContext.Provider>
-                <span>16 Hours ago</span>
-                <h3>Joined April 20, 2020</h3>
+                {user.lastConnection === true ? (
+                  <div className="online-indicator-wrapper">
+                    <span>online</span>
+                    <div className="online-indicator"></div>
+                  </div>
+                ) : (
+                  <div>
+                    <IconContext.Provider
+                      value={{ className: "user-tool-tip-icon" }}
+                    >
+                      <IoMdTime />
+                    </IconContext.Provider>
+                    <span>16 Hours ago</span>
+                  </div>
+                )}
+
+                <h3>
+                  Joined at <span>{user.joinedAt}</span>{" "}
+                </h3>
               </div>
             </div>
           </div>

@@ -16,11 +16,11 @@ const LoginModal = ({ onClose, shown, onOpenSignupModal }) => {
     password: Yup.string().required().min(4).label("Password"),
   });
 
-  const styles = {
-    transform: shown ? "scale(1)" : "scale(0.7)",
-    opacity: shown ? 1 : 0,
-    visibility: shown ? "visible" : "hidden",
-  };
+  // const styles = {
+  //   transform: shown ? "scale(1)" : "scale(0.7)",
+  //   opacity: shown ? 1 : 0,
+  //   visibility: shown ? "visible" : "hidden",
+  // };
   const modalContainerStyle = {
     display: shown ? "inline" : "none",
   };

@@ -27,7 +27,7 @@ import TagsCategoriesModal from "../modals/tagsCategoriesModal";
 import CustomOption from "./customBtn";
 import { users } from "../../data/posts";
 import Entry from "./mentionEntry";
-import AppAlert from "../common/alert";
+// import AppAlert from "../common/alert";
 import BlockStyleControls from "./utils/BlockStyleControls";
 import InlineStyleControls from "./utils/InlineStyleControls";
 import getBlockStyle from "./utils/getBlockStyle";
@@ -52,8 +52,6 @@ class RichTextEditor extends React.Component {
       closeEdior: false,
       selectedTag: null,
       newSuggestions: [],
-      showAlert: false,
-      alertMessage: "",
       postTitle: "",
     };
 
@@ -174,18 +172,11 @@ class RichTextEditor extends React.Component {
   };
   handleSubmit = () => {
     const { selectedTag, postTitle } = this.state;
-    let alertMessage = "";
-    if (!selectedTag) {
-      alertMessage += "You have to choose a category for your discussion ,";
-      this.setState({ alertMessage });
-      this.handleShowAlert();
-    }
-    if (postTitle.trim().length === 0) {
-      alertMessage += "Post title should not be empty ,";
-      this.setState({ alertMessage });
-      this.handleShowAlert();
-    }
-    const data = this.handleExtractData(this.state.editorState);
+    const data = {
+      editorContent: this.handleExtractData(this.state.editorState),
+      category: selectedTag,
+      title: postTitle,
+    };
     this.props.onSubmit(data);
   };
 
@@ -198,8 +189,8 @@ class RichTextEditor extends React.Component {
     users.map((user) => {
       return newUsersMentions.push({
         ...user,
-        name: user.firstName,
-        link: user.imageUrl,
+        name: user.userName,
+        link: `/profile/${user.userName}`,
         avatar: user.imageUrl,
       });
     });
@@ -215,12 +206,7 @@ class RichTextEditor extends React.Component {
     }
     return false;
   }
-  handleShowAlert = () => {
-    this.setState({ showAlert: true });
-  };
-  handleHideAlert = () => {
-    this.setState({ showAlert: false });
-  };
+
   render() {
     const {
       editorState,
@@ -228,8 +214,6 @@ class RichTextEditor extends React.Component {
       editorReduced,
       closeEdior,
       selectedTag,
-      showAlert,
-      alertMessage,
     } = this.state;
     const { MentionSuggestions } = this.mentionPlugin;
     const { EmojiSuggestions, EmojiSelect } = this.emojiPlugin;
@@ -246,6 +230,7 @@ class RichTextEditor extends React.Component {
       categoriesShown,
       onShowCategories,
       style,
+      comment,
     } = this.props;
 
     let className = "RichEditor-editor";
@@ -275,36 +260,44 @@ class RichTextEditor extends React.Component {
             className="resize-div"
             style={{ cursor: fullScreen && "cursor" }}
           ></div>
-
-          <div className="editor-category-section">
-            <div className="input-category-wrapper">
-              <div className="category-style-wrapper">
-                <div
-                  className={selectedTag ? "category selected" : "category"}
-                  onClick={onShowCategories}
-                >
-                  {selectedTag ? (
-                    <span
-                      className="editor-selectedTag"
-                      style={{ backgroundColor: selectedTag.color }}
-                    >
-                      {selectedTag.name}
-                    </span>
-                  ) : (
-                    <span>choose a category</span>
-                  )}
+          <div
+            className={
+              comment
+                ? "editor-category-section comment"
+                : "editor-category-section"
+            }
+          >
+            {comment && <div className="editor-backward">{comment()}</div>}
+            {!comment && (
+              <div className="input-category-wrapper">
+                <div className="category-style-wrapper">
+                  <div
+                    className={selectedTag ? "category selected" : "category"}
+                    onClick={onShowCategories}
+                  >
+                    {selectedTag ? (
+                      <span
+                        className="editor-selectedTag"
+                        style={{ backgroundColor: selectedTag.color }}
+                      >
+                        {selectedTag.name}
+                      </span>
+                    ) : (
+                      <span>choose a category</span>
+                    )}
+                  </div>
+                </div>
+                <div className="input-style-wrapper">
+                  <div className="input-title-wrapper">
+                    <input
+                      type="text"
+                      placeholder="Enter dicussion Title"
+                      onChange={this.handleChangePostTitle}
+                    />
+                  </div>
                 </div>
               </div>
-              <div className="input-style-wrapper">
-                <div className="input-title-wrapper">
-                  <input
-                    type="text"
-                    placeholder="Enter dicussion Title"
-                    onChange={this.handleChangePostTitle}
-                  />
-                </div>
-              </div>
-            </div>
+            )}
             <div className="editor-modal-controlls">
               <div className="btn reduce-btn" onClick={this.handleReduceEditor}>
                 <IconContext.Provider value={{ className: "edito-modal-icon" }}>
@@ -327,6 +320,9 @@ class RichTextEditor extends React.Component {
                     <FaTimes />
                   </IconContext.Provider>
                 </div>
+                {comment && (
+                  <div className="editor-backward hide">{comment()}</div>
+                )}
                 <div className="send-btn-icon" onClick={this.handleSubmit}>
                   <IconContext.Provider
                     value={{ className: "edito-modal-icon send" }}
@@ -396,12 +392,6 @@ class RichTextEditor extends React.Component {
           onClose={onCloseCategorie}
           onSubmitTag={this.handleSubmitTag}
           selectedTag={selectedTag}
-        />
-        <AppAlert
-          message={alertMessage}
-          title="Alert"
-          onHide={this.handleHideAlert}
-          visible={showAlert}
         />
       </>
     );

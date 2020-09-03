@@ -11,13 +11,16 @@ class PostList extends Component {
       UserTooltipVisible,
       posts,
       user,
+      isCurrentUser,
     } = this.props;
     return (
       <>
         {posts.map((post) => (
           <div key={post._id}>
             <Post
-              postControls={() => <PostControls post={post} />}
+              postControls={() => (
+                <PostControls post={post} isCurrentUser={isCurrentUser} />
+              )}
               onShowUser={onShowUser}
               UserTooltipVisible={UserTooltipVisible}
               onHideUser={onHideUser}

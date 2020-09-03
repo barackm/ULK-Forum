@@ -145,7 +145,7 @@ class TagsCategoriesModal extends Component {
                   .map((c) => (
                     <li
                       className="tags-item"
-                      id={c.id}
+                      key={c._id}
                       onClick={() => this.handleSelectTag(c)}
                     >
                       {this.state.selectedTag &&

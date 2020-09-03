@@ -735,25 +735,24 @@ tbody tr:hover {
     top: 0;
   }
   table tbody tr td:nth-child(1):before {
-    content: "First Name";
+    content: "User Name";
   }
   table tbody tr td:nth-child(2):before {
-    content: "Last Name";
-  }
-  table tbody tr td:nth-child(3):before {
     content: "Joined at";
   }
-  table tbody tr td:nth-child(4):before {
+  table tbody tr td:nth-child(3):before {
     content: "Posts";
   }
-  table tbody tr td:nth-child(5):before {
+  table tbody tr td:nth-child(4):before {
     content: "View Profile";
   }
-  table tbody tr td:nth-child(6):before {
+  table tbody tr td:nth-child(5):before {
     content: "Admin";
   }
-  table tbody tr td:nth-child(7):before {
+  table tbody tr td:nth-child(6):before {
     content: "Delete";
+  }
+  table tbody tr td:nth-child(7):before {
   }
 
   table tbody tr .column1.post::before {

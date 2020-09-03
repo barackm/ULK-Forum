@@ -154,7 +154,12 @@
   justify-content: center;
   align-items: center;
 }
+.post-details-fdw {
+}
 .discussion-body {
+  width: auto;
+  margin-left: 15px;
+  margin-right: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -165,6 +170,12 @@
   font-weight: 500;
   line-height: 1;
   color: var(--dark);
+}
+.discussion-body span:nth-child(1) {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--light);
 }
 .post-about-timing span {
   font-size: 14px;
@@ -180,7 +191,7 @@
   justify-content: center;
   align-items: center;
   background-color: var(--primary-color);
-  margin-right: 20px;
+  /* margin-right: 20px; */
   color: var(--white);
   font-weight: 600;
   overflow: hidden;
@@ -270,11 +281,41 @@
     font-size: 12px;
   }
   .dropdown-btn {
-    padding: 1px 8px;
+    padding: 0px 8px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--primary-color);
     margin-bottom: 10px;
     width: auto;
     display: flex;
+  }
+  .dropdown-btn span {
+    font-size: 14px;
+  }
+  .discussion-item-main-wrapper {
+    padding: 5px 15px !important;
+    margin: 0 !important;
+    border-radius: 0;
+  }
+  .discussion-body span:nth-child(1) {
+    font-size: 14px;
+  }
+  .post-about-timing span:nth-child(1) {
+    font-size: 10px;
+  }
+  .right-btn {
+    padding: 0px 0;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+  }
+  .refresh-icon {
+    font-size: 14px;
   }
 }
 
@@ -295,6 +336,9 @@
     margin-bottom: 10px;
     width: auto;
     display: flex;
+  }
+  .discussion-item-main-wrapper {
+    /* padding: 10px 15px !important; */
   }
 }
 

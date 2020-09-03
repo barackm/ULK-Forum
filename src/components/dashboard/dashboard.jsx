@@ -6,7 +6,7 @@ import DashboardNavbar from "./dashboardNavbar";
 import UsersPage from "./usersPage";
 import PostsPage from "./postsPage";
 import { Route } from "react-router-dom";
-import Switch from "react-bootstrap/esm/Switch";
+// import Switch from "react-bootstrap/esm/Switch";
 class Dashboard extends Component {
   state = {
     navbarToggled: false,
@@ -23,7 +23,7 @@ class Dashboard extends Component {
   };
   render() {
     const { navbarToggled, selectedLink } = this.state;
-    const { onToggleMenu, history, match } = this.props;
+    const { onToggleMenu, match } = this.props;
     return (
       <div className="dashboard-main-wrapper">
         <DashboardNavbar

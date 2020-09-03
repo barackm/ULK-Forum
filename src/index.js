@@ -6,6 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import configureStore from "./store/configureStore";
 import { Provider } from "react-redux";
+import BackToTop from "./components/utils/BackToTop";
 // import "bootstrap/dist/css/bootstrap.css";
 const store = configureStore();
 
@@ -13,7 +14,9 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <BackToTop>
+          <App />
+        </BackToTop>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,

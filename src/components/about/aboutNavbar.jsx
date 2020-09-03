@@ -9,16 +9,19 @@ class AboutNavbar extends Component {
           <div className="about-navbar-links-wrapper">
             <ul>
               <li>
-                <a href="#">Home</a>
+                <a href="/">Forum</a>
               </li>
               <li>
-                <a href="#">About</a>
+                <a href="/">Home</a>
               </li>
               <li>
-                <a href="#">Portfolio</a>
+                <a href="/">About</a>
               </li>
               <li>
-                <a href="#">Contacts</a>
+                <a href="/">Portfolio</a>
+              </li>
+              <li>
+                <a href="/">Contacts</a>
               </li>
             </ul>
           </div>

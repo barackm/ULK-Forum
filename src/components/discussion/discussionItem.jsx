@@ -15,17 +15,19 @@ class DiscussionItem extends Component {
     return (
       <Link to={`/post/${post._id}`} className="discussion-item-main-wrapper">
         <div className="discussion-profile-wrapper">
-          <div
-            className="dicussion-profile"
-            style={{
-              backgroundColor: user[0].color,
-            }}
-          >
-            {user[0].imageUrl ? (
-              <img src={user[0].imageUrl} alt={user[0].initial} />
-            ) : (
-              <span>{user[0].initial}</span>
-            )}
+          <div className="post-details-fdw">
+            <div
+              className="dicussion-profile"
+              style={{
+                backgroundColor: user[0].color,
+              }}
+            >
+              {user[0].imageUrl ? (
+                <img src={user[0].imageUrl} alt={user[0].initial} />
+              ) : (
+                <span>{user[0].initial}</span>
+              )}
+            </div>
           </div>
           <div className="discussion-body">
             <span>{truncatedStr(post.title, 100)}</span>
