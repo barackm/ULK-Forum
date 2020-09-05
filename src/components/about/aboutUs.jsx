@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import Podium from "./podium";
+import Podium from "./podium";
 class AboutUs extends Component {
   state = {};
   render() {
@@ -7,11 +7,11 @@ class AboutUs extends Component {
       <div className="about-us-page-main-wrapper">
         {/* <div className="about-section-wrapper">
           <h1>hello my wordl</h1>
-        </div>
+        </div> */}
 
         <div className="svg-podium-wrapper">
           <Podium />
-        </div> */}
+        </div>
       </div>
     );
   }
