@@ -26,13 +26,14 @@ class PostsPage extends Component {
   };
   handleDeletePost = (post) => {};
   getPostUser = (posts, users, comments) => {
+    console.log(comments);
     const _posts = [];
     posts.map((post) => {
       return _posts.push({
         ...post,
         title: truncatedStr(post.title, 30),
         owner: users.filter((user) => user._id === post.userId)[0].userName,
-        _comments: comments.filter((comment) => comment.postId === post._id)
+        _comments: comments.filter((comment) => comment.userId === post.userId)
           .length,
       });
     });

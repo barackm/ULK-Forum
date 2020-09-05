@@ -27,7 +27,6 @@ import TagsCategoriesModal from "../modals/tagsCategoriesModal";
 import CustomOption from "./customBtn";
 import { users } from "../../data/posts";
 import Entry from "./mentionEntry";
-// import AppAlert from "../common/alert";
 import BlockStyleControls from "./utils/BlockStyleControls";
 import InlineStyleControls from "./utils/InlineStyleControls";
 import getBlockStyle from "./utils/getBlockStyle";
@@ -89,10 +88,11 @@ class RichTextEditor extends React.Component {
         window.removeEventListener("mousemove", resize);
       }
     };
-
     makeResizableDiv();
     const mentions = document.querySelector(".mentions-suggestions-wrapper");
-    console.log(mentions.getBoundingClientRect().bottom);
+
+    const defaultContent = this.props.defaultContent;
+    console.log(defaultContent);
   }
   _handleKeyCommand(command, editorState) {
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -141,9 +141,7 @@ class RichTextEditor extends React.Component {
   handleReduceEditor = () => {
     this.setState({ editorReduced: !this.state.editorReduced });
   };
-  onAddMention = (mention) => {
-    console.log(mention);
-  };
+  onAddMention = (mention) => {};
 
   handleHideEditor = () => {
     this.props.onHideEditor();

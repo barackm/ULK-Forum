@@ -65,7 +65,7 @@ class PostsTable extends Component {
   ];
 
   render() {
-    const { posts, onSort, sortColumn } = this.props;
+    const { posts, onSort, sortColumn, comments } = this.props;
     return (
       <div className="limiter">
         <div className="container-table100">

@@ -9,12 +9,17 @@ class DiscussionList extends Component {
     this.setState({ limit: this.state.limit + 3 });
   };
   render() {
-    const { posts, users, categories } = this.props;
+    const { posts, users, categories, comments } = this.props;
     return (
       <div className="discussion-list-main-wrapper">
         {posts.map((post) => (
           <div key={post._id}>
-            <DiscussionItem post={post} users={users} categories={categories} />
+            <DiscussionItem
+              post={post}
+              users={users}
+              categories={categories}
+              comments={comments}
+            />
           </div>
         ))}
       </div>

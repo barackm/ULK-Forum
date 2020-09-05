@@ -17,7 +17,6 @@ class LoginLinks extends Component {
       _id: "898549a0-52bc-4a72-9323-68c3c78deea5",
       email: "aline@gmail.com",
       userName: "Alline",
-      lastName: "Megan",
       initial: "A",
       imageUrl: "",
       color: "#FFC312",
@@ -40,7 +39,7 @@ class LoginLinks extends Component {
             />
           </div>
           <div className="login-links-name">
-            <span>John Doe</span>
+            <span>{currentUser.userName}</span>
           </div>
         </div>
         <ul

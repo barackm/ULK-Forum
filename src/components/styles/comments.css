@@ -76,3 +76,15 @@
   /* margin-left: 100px; */
 }
 /* end comments  */
+@media (max-width: 800px) {
+  .comments-wrapper {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+  }
+  .comments-list-wrapper {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+  }
+}

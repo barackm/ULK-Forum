@@ -3,7 +3,7 @@ import { IconContext } from "react-icons";
 import { BsSearch } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { IoIosNotificationsOutline } from "react-icons/io";
-
+import AuthLinks from "./authLinks";
 import logo from "../media/ULK_Logo.png";
 import "./styles/main.css";
 // import AuthLinks from "./authLinks";
@@ -73,11 +73,11 @@ class Navigation extends Component {
                 onChange={onSearch}
               />
             </div>
-            {/* <AuthLinks
+            <AuthLinks
               onShowSignUpModal={this.handleShowSighUpModal}
               onShowLoginModal={this.handleShowLoginModal}
-            /> */}
-            <LoginLinks onCloseNavbar={() => this.props.onHideMenu()} />
+            />
+            {/* <LoginLinks onCloseNavbar={() => this.props.onHideMenu()} /> */}
           </div>
         </div>
       </div>

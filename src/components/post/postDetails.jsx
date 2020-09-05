@@ -11,6 +11,7 @@ import AppAlert from "../common/alert";
 import { IconContext } from "react-icons";
 import { TiArrowBack } from "react-icons/ti";
 import { Link } from "react-scroll";
+import PostControls from "../common/postControls";
 
 class PostDetails extends Component {
   state = {
@@ -67,9 +68,7 @@ class PostDetails extends Component {
   handleCloseTagsCategoriesModal = () => {
     this.setState({ showTagsCategorieModal: false });
   };
-  handleSubmitPost = (data) => {
-    console.log(data);
-  };
+  handleSubmitPost = (data) => {};
   handleChangeCategory = () => {
     this.setState({ categoriesModalShown: !this.state.categoriesModalShown });
   };
@@ -122,48 +121,54 @@ class PostDetails extends Component {
       alertMessage,
       showAlert,
     } = this.state;
-    const postComments = comments.filter((c) => c.postId === post._id);
+    const postComments = comments.filter((c) => c.userId === post.userId);
 
     return (
-      <div className="post-details-wrapper">
-        <NavbarBack path="/" />
-        <div
-          className="post-detail-header"
-          style={{ backgroundColor: category.color }}
-        >
-          <div className="post-category">
-            <span style={{ color: category.color }}>{category.name}</span>
+      <>
+        <div className="post-details-wrapper">
+          <NavbarBack path="/" />
+          <div
+            className="post-detail-header"
+            style={{ backgroundColor: category.color }}
+          >
+            <div className="post-category">
+              <span style={{ color: category.color }}>{category.name}</span>
+            </div>
+            <h4 className="question-synthese">
+              {truncatedStr(post.title || "welcome", 50)}
+            </h4>
           </div>
-          <h4 className="question-synthese">
-            {truncatedStr(post.title || "welcome", 50)}
-          </h4>
-        </div>
-        <div className="post-details-container" id="post-details">
-          <Post
-            onComment={this.handleToggleEditor}
-            post={post}
-            postControls={this.PostControls}
-            onShowUser={this.handleShowUser}
-            UserTooltipVisible={UserTooltipVisible}
-            onHideUser={this.handleHideUser}
-            commentsNumber={postComments.length}
-          />
-          <div className="post-detail-comment">
-            <div className="post-sidebar-wrapper">
-              <div
-                className="add-comment-btn"
-                onClick={this.handleToggleEditor}
-              >
-                <span>Add comment</span>
+          <div className="post-details-container" id="post-details">
+            <Post
+              onComment={this.handleToggleEditor}
+              post={post}
+              postControls={() => <PostControls post={post} />}
+              onShowUser={this.handleShowUser}
+              UserTooltipVisible={UserTooltipVisible}
+              onHideUser={this.handleHideUser}
+              commentsNumber={postComments.length}
+            />
+            <div className="post-detail-comment">
+              <div className="post-sidebar-wrapper">
+                <div
+                  className="add-comment-btn"
+                  onClick={this.handleToggleEditor}
+                >
+                  <span>Add comment</span>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="comments-wrapper">
-            <CommentsList comments={postComments} users={users} />
+            <div className="comments-wrapper">
+              <CommentsList
+                onHideEditor={this.handleHideEditor}
+                comments={postComments}
+                users={users}
+              />
+            </div>
           </div>
         </div>
-
         <RichTextEditor
+          defaultContent="this is the default content"
           comment={() => this.postBackward(post)}
           onSubmit={this.handleSubmitPost}
           onCloseCategorie={this.handleCloseTagsCategoriesModal}
@@ -179,7 +184,7 @@ class PostDetails extends Component {
           onHide={this.handleHideAlert}
           visible={showAlert}
         />
-      </div>
+      </>
     );
   }
 }

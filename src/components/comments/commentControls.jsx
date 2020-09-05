@@ -3,7 +3,7 @@ import { IconContext } from "react-icons";
 import { BsTrash } from "react-icons/bs";
 import { MdModeEdit } from "react-icons/md";
 
-class PostControls extends Component {
+class CommentControls extends Component {
   state = {
     showPostControls: false,
   };
@@ -11,20 +11,20 @@ class PostControls extends Component {
     this.setState({ showPostControls: !this.state.showPostControls });
   };
   handlHidePostControls = () => {};
-  handleEditComment = (post) => {
-    console.log("post edited", post);
+  handleEditComment = (comment) => {
+    console.log("comment edited", comment);
   };
-  handleDeletePost = (post) => {
-    console.log("post deleted", post);
+  handleDeletePost = (comment) => {
+    console.log("comment deleted", comment);
   };
   render() {
-    const { post } = this.props;
+    const { comment } = this.props;
     return (
       <div className="post-additional-info">
         <div className="post-controls-profile">
           <div
             className="control-item"
-            onClick={() => this.handleEditComment(post)}
+            onClick={() => this.handleEditComment(comment)}
           >
             <IconContext.Provider value={{ className: "profile-edit-icon" }}>
               <MdModeEdit />
@@ -33,12 +33,12 @@ class PostControls extends Component {
           </div>
           <div
             className="control-item"
-            onClick={() => this.handleDeletePost(post)}
+            onClick={() => this.handleDeletePost(comment)}
           >
             <IconContext.Provider value={{ className: "profile-edit-icon" }}>
               <BsTrash />
             </IconContext.Provider>
-            <span style={{ color: "#000" }}>delete</span>
+            <span>delete</span>
           </div>
         </div>
       </div>
@@ -46,4 +46,4 @@ class PostControls extends Component {
   }
 }
 
-export default PostControls;
+export default CommentControls;

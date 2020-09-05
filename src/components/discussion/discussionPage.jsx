@@ -4,7 +4,7 @@ import { BsCaretDownFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import { GoCheck } from "react-icons/go";
 
-import { posts, users, categories } from "../../data/posts";
+import { posts, users, categories, comments } from "../../data/posts";
 import LoadingSpinner from "../common/loadingSpinner";
 import DiscussionList from "./discussionList";
 
@@ -106,6 +106,7 @@ class DiscussionPage extends Component {
               users={users}
               categories={categories}
               posts={newPosts}
+              comments={comments}
             />
           ) : (
             <LoadingSpinner />

@@ -6,12 +6,13 @@ import truncatedStr from "../utils/getTruncatedString";
 
 class DiscussionItem extends Component {
   render() {
-    const { post, users, categories } = this.props;
+    const { post, users, categories, comments } = this.props;
     const user = users.filter((user) => user._id === post.userId);
     const category = categories.filter(
       (category) => category._id === post.categoryId
     );
-
+    const _comments = comments.filter((comment) => comment.postId === post._id)
+      .length;
     return (
       <Link to={`/post/${post._id}`} className="discussion-item-main-wrapper">
         <div className="discussion-profile-wrapper">
@@ -51,7 +52,7 @@ class DiscussionItem extends Component {
           >
             <FaRegComment />
           </IconContext.Provider>
-          <span>50</span>
+          <span>{_comments}</span>
         </div>
       </Link>
     );
