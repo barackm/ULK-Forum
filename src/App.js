@@ -30,6 +30,7 @@ import "../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import AppAlert from "./components/common/alert";
 import AboutPage from "./components/about/aboutPage";
 import AboutUsPage from "./aboutUs/aboutUsPage";
+import PostReport from "./components/modals/postReport";
 
 class App extends Component {
   state = {
@@ -188,7 +189,6 @@ class App extends Component {
               <Redirect from="/" to="/discussions" />
               <Redirect to="/not-found" />
             </Switch>
-            {/* <AboutPage /> */}
           </main>
 
           <LoginModal

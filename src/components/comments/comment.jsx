@@ -72,7 +72,6 @@ class Comment extends Component {
               <div className="post-btn comment">
                 <span>Like</span>
                 <span>{comment.likes}</span>
-
                 <div className="controlls-post-wrapper">
                   <div
                     className={
@@ -142,24 +141,6 @@ class Comment extends Component {
             onMouseLeave={this.handleHideUser}
           />
         </div>
-
-        {/* <RichTextEditor
-          style={{ margin: 0 }}
-          defaultContent="this is the default content"
-          comment={() => this.postBackward()}
-          onSubmit={this.handleSubmitPost}
-          onCloseCategorie={this.handleCloseTagsCategoriesModal}
-          onShowCategories={this.handleShowTagsCategoriesModal}
-          categoriesShown={showTagsCategorieModal}
-          showEditor={!this.state.showEditor}
-          onHideEditor={this.handleHideEditor}
-        />
-        <AppAlert
-          message={alertMessage}
-          title="Alert"
-          onHide={this.handleHideAlert}
-          visible={showAlert}
-        /> */}
       </>
     );
   }

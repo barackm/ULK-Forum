@@ -410,6 +410,7 @@
     border-top: none !important;
     border-radius: 0px !important;
     margin-left: 0 !important;
+    border: 0px !important;
   }
   .RichEditor-root.full-screen {
     width: 100%;
@@ -594,7 +595,7 @@
 
 @media (max-width: 800px) {
   .RichEditor-root.re-reduce {
-    bottom: -330px;
+    bottom: -240px;
     top: auto !important;
   }
   .navbar-text-editor-icon-wrapper {
@@ -602,5 +603,8 @@
   }
   .navbar-hamberger-wrapper {
     margin-left: 15px !important ;
+  }
+  .RichEditor-root.re-reduce .send-btn-icon {
+    visibility: hidden;
   }
 }

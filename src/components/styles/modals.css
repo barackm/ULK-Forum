@@ -372,7 +372,7 @@ input {
   z-index: 999999 !important;
 }
 .back-shed-category {
-  z-index: 999;
+  z-index: 9999;
   position: fixed;
   top: 0;
   left: 0;
@@ -860,3 +860,109 @@ input {
   margin: 0 10px;
 }
 /* end online indicator  */
+
+/* report post styles  */
+.post-reporting-main-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -200vh);
+  width: 400px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  justify-content: center;
+  background-color: var(--white);
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 9999;
+  border: 1px solid var(--secondary-color);
+
+  transition: all 0.5s ease-in;
+}
+.post-reporting-main-wrapper.toggled {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+@keyframes animateModalReport {
+  from {
+    transform: scale(0.8);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+.close-btn-report {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.post-reporting-footer {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+.report-btn-wrapper {
+  width: auto;
+  height: auto;
+  position: relative;
+}
+.post-reporting-btn {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: var(--primary-color);
+  color: var(--white);
+  cursor: pointer;
+  /* margin: 20px 0; */
+}
+.post-report-send {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.452);
+  z-index: 9;
+}
+.port-reporting-select-wrapper {
+  margin: 20px 0;
+}
+.post-reporting-back-ground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background-color: var(--modal-backgroud);
+}
+.css-2b097c-container {
+  width: 100%;
+}
+.post-reporting-header {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.tags-modal-btn-wrapper {
+  width: auto;
+  height: auto;
+  position: relative;
+}
+.tags-modal-btn-wrapper span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: #e8ecf377;
+  z-index: 9;
+}
+/* end report post  */

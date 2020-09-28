@@ -25,7 +25,7 @@ import { RiFullscreenLine } from "react-icons/ri";
 import HeaderStyle from "./headerStyle";
 import TagsCategoriesModal from "../modals/tagsCategoriesModal";
 import CustomOption from "./customBtn";
-import { users } from "../../data/posts";
+import { users, categories } from "../../data/posts";
 import Entry from "./mentionEntry";
 import BlockStyleControls from "./utils/BlockStyleControls";
 import InlineStyleControls from "./utils/InlineStyleControls";
@@ -40,6 +40,8 @@ import "draft-js-hashtag-plugin/lib/plugin.css";
 import "./mentionsStyles.css";
 import "./editerStyles.css";
 import styleMap from "./utils/styleMap";
+import truncatedStr from "../utils/getTruncatedString";
+import { truncate } from "lodash";
 
 class RichTextEditor extends React.Component {
   constructor(props) {
@@ -68,6 +70,7 @@ class RichTextEditor extends React.Component {
     this.mentionPlugin = createMentionPlugin();
   }
   componentDidMount() {
+    this.handleOpenEditorWithContent();
     const suggestions = this.handlGetMentionUsers(users);
     this.setState({ suggestions });
     const makeResizableDiv = () => {
@@ -89,11 +92,22 @@ class RichTextEditor extends React.Component {
       }
     };
     makeResizableDiv();
-    const mentions = document.querySelector(".mentions-suggestions-wrapper");
-
-    const defaultContent = this.props.defaultContent;
-    console.log(defaultContent);
   }
+  handleOpenEditorWithContent = () => {
+    const post = this.props.defaultContent;
+    if (post) {
+      const category = categories.filter((c) => c._id === post.categoryId);
+      const title = post.title;
+      console.log("post title", title);
+
+      this.setState({
+        selectedTag: category[0],
+        postTitle: title,
+      });
+    } else {
+      this.setState({ selectedTag: null });
+    }
+  };
   _handleKeyCommand(command, editorState) {
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
@@ -212,6 +226,7 @@ class RichTextEditor extends React.Component {
       editorReduced,
       closeEdior,
       selectedTag,
+      postTitle,
     } = this.state;
     const { MentionSuggestions } = this.mentionPlugin;
     const { EmojiSuggestions, EmojiSelect } = this.emojiPlugin;
@@ -250,7 +265,7 @@ class RichTextEditor extends React.Component {
       transform: showEditor ? "translateY(200vh)" : "translateY(0vh)",
       ...style,
     };
-
+    console.log(selectedTag);
     return (
       <>
         <div className={closeEditorClasses} style={editorStyle}>
@@ -288,6 +303,7 @@ class RichTextEditor extends React.Component {
                 <div className="input-style-wrapper">
                   <div className="input-title-wrapper">
                     <input
+                      value={postTitle}
                       type="text"
                       placeholder="Enter dicussion Title"
                       onChange={this.handleChangePostTitle}

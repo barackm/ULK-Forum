@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-// import draftToHtml from "draftjs-to-html";
+
 import { posts, categories, comments, users } from "../../data/posts";
 import CommentsList from "../comments/commentsList";
 import NavbarBack from "../common/navbarBack";
-import Post from "../common/post";
 import truncatedStr from "../utils/getTruncatedString";
 import RichTextEditor from "../textEditor/richTextEditor";
 import AppAlert from "../common/alert";
@@ -12,7 +11,7 @@ import { IconContext } from "react-icons";
 import { TiArrowBack } from "react-icons/ti";
 import { Link } from "react-scroll";
 import PostControls from "../common/postControls";
-
+import Post from "./post";
 class PostDetails extends Component {
   state = {
     UserTooltipVisible: false,
@@ -138,10 +137,14 @@ class PostDetails extends Component {
               {truncatedStr(post.title || "welcome", 50)}
             </h4>
           </div>
+
           <div className="post-details-container" id="post-details">
             <Post
               onComment={this.handleToggleEditor}
               post={post}
+              onEdit={() => {}}
+              onReport={() => {}}
+              onDelete={() => {}}
               postControls={() => <PostControls post={post} />}
               onShowUser={this.handleShowUser}
               UserTooltipVisible={UserTooltipVisible}
@@ -167,16 +170,18 @@ class PostDetails extends Component {
             </div>
           </div>
         </div>
-        <RichTextEditor
-          defaultContent="this is the default content"
-          comment={() => this.postBackward(post)}
-          onSubmit={this.handleSubmitPost}
-          onCloseCategorie={this.handleCloseTagsCategoriesModal}
-          onShowCategories={this.handleShowTagsCategoriesModal}
-          categoriesShown={showTagsCategorieModal}
-          showEditor={!this.state.showEditor}
-          onHideEditor={this.handleHideEditor}
-        />
+        {this.state.showEditor && (
+          <RichTextEditor
+            defaultContent="this is the default content"
+            comment={() => this.postBackward(post)}
+            onSubmit={this.handleSubmitPost}
+            onCloseCategorie={this.handleCloseTagsCategoriesModal}
+            onShowCategories={this.handleShowTagsCategoriesModal}
+            categoriesShown={showTagsCategorieModal}
+            showEditor={!this.state.showEditor}
+            onHideEditor={this.handleHideEditor}
+          />
+        )}
 
         <AppAlert
           message={alertMessage}

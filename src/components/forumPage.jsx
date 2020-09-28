@@ -154,15 +154,17 @@ class ForumPage extends Component {
             />
           </div>
         </div>
-        <RichTextEditor
-          style={{ marginLeft: 50 }}
-          onSubmit={this.handleSubmitPost}
-          onCloseCategorie={this.handleCloseTagsCategoriesModal}
-          onShowCategories={this.handleShowTagsCategoriesModal}
-          categoriesShown={showTagsCategorieModal}
-          showEditor={!this.state.showEditor}
-          onHideEditor={this.handleHideEditor}
-        />
+        {this.state.showEditor && (
+          <RichTextEditor
+            style={{ marginLeft: 50 }}
+            onSubmit={this.handleSubmitPost}
+            onCloseCategorie={this.handleCloseTagsCategoriesModal}
+            onShowCategories={this.handleShowTagsCategoriesModal}
+            categoriesShown={showTagsCategorieModal}
+            showEditor={!this.state.showEditor}
+            onHideEditor={this.handleHideEditor}
+          />
+        )}
         <AppAlert
           message={alertMessage}
           title="Alert"

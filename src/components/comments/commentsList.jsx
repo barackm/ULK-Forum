@@ -5,6 +5,8 @@ import AppAlert from "../common/alert";
 import RichTextEditor from "../textEditor/richTextEditor";
 import { IconContext } from "react-icons";
 import { TiArrowBack } from "react-icons/ti";
+import PostReport from "../modals/postReport";
+import { comments } from "../../data/posts";
 
 class CommentsList extends Component {
   state = {
@@ -15,6 +17,7 @@ class CommentsList extends Component {
     showAlert: false,
     alertMessage: "",
     currentComment: {},
+    showReportModal: false,
   };
   handleEditComment = (comment) => {
     console.log("comment edited", comment);
@@ -80,17 +83,41 @@ class CommentsList extends Component {
       editor.classList.remove("re-reduce");
     }
   };
+  handleCloseReportModal = () => {
+    this.setState({ showReportModal: false });
+  };
+  handleSubmitCommentReport = (report) => {
+    console.log(report);
+  };
+  handleShowReportModal = (comment) => {
+    this.setState({
+      showReportModal: true,
+      showPostControls: false,
+      currentComment: comment,
+    });
+  };
   render() {
     const { comments, users } = this.props;
-    const { alertMessage, showTagsCategorieModal, showAlert } = this.state;
+    const {
+      alertMessage,
+      showTagsCategorieModal,
+      showAlert,
+      showReportModal,
+    } = this.state;
 
     return (
       <>
+        <PostReport
+          target="Comment"
+          onSubmitReport={this.handleSubmitCommentReport}
+          onCloseReportModal={this.handleCloseReportModal}
+          showReportModal={showReportModal}
+        />
         <div className="comments-list-wrapper">
           {comments.map((comment) => (
             <div key={comment._id}>
               <Comment
-                onReportComment={this.handleReportComment}
+                onReportComment={this.handleShowReportModal}
                 onEditComment={this.handleToggleEditor}
                 onDeleteComment={this.handleDeletePost}
                 comment={comment}
@@ -99,17 +126,19 @@ class CommentsList extends Component {
             </div>
           ))}
         </div>
-        <RichTextEditor
-          style={{ marginLeft: 0 }}
-          defaultContent={this.state.currentComment.content}
-          comment={() => this.postBackward()}
-          onSubmit={this.handleSubmitPost}
-          onCloseCategorie={this.handleCloseTagsCategoriesModal}
-          onShowCategories={this.handleShowTagsCategoriesModal}
-          categoriesShown={showTagsCategorieModal}
-          showEditor={!this.state.showEditor}
-          onHideEditor={this.handleHideEditor}
-        />
+        {this.state.showEditor && (
+          <RichTextEditor
+            style={{ marginLeft: 0 }}
+            defaultContent={this.state.currentComment.content}
+            comment={() => this.postBackward()}
+            onSubmit={this.handleSubmitPost}
+            onCloseCategorie={this.handleCloseTagsCategoriesModal}
+            onShowCategories={this.handleShowTagsCategoriesModal}
+            categoriesShown={showTagsCategorieModal}
+            showEditor={!this.state.showEditor}
+            onHideEditor={this.handleHideEditor}
+          />
+        )}
         <AppAlert
           message={alertMessage}
           title="Alert"

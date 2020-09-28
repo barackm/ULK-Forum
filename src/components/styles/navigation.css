@@ -416,7 +416,7 @@ a {
     top: 0;
     left: 0;
     background-color: var(--modal-backgroud);
-    z-index: 999;
+    z-index: 9999;
   }
 }
 
@@ -432,4 +432,7 @@ a {
 /* end navigation  */
 .navigation-wrapper.about {
   display: none !important;
+}
+.navigation-wrapper.scrolling {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5) !important;
 }

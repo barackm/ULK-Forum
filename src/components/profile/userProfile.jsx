@@ -7,12 +7,16 @@ import { Switch, Route } from "react-router-dom";
 import { FaCog, FaPlusCircle } from "react-icons/fa";
 import { FiAtSign } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { TiArrowBack } from "react-icons/ti";
 
 import ColorLuminance from "../utils/getDarkenLihtenColor";
 import ProfileNavbar from "./profileNavbar";
 import PostList from "../post/postList";
 import { users, posts } from "../../data/posts";
 import ulk from "../../media/photos/ulk2.png";
+import RichTextEditor from "../textEditor/richTextEditor";
+import AppAlert from "../common/alert";
+import truncatedStr from "../utils/getTruncatedString";
 
 class UserProfile extends Component {
   state = {
@@ -22,6 +26,18 @@ class UserProfile extends Component {
     navModalOpen: false,
     selectedLink: "Posts",
     isCurrentUser: true,
+    category: {},
+    background: "",
+    categorySelected: "",
+    showEditor: false,
+    showTagsCategorieModal: false,
+    categoriesModalShown: false,
+    currentText: "",
+    alertMessage: "",
+    showAlert: false,
+    reduceEditor: false,
+    currentPost: {},
+    postScrollId: "",
   };
   handleShowUser = () => {
     this.setState({ UserTooltipVisible: true });
@@ -77,32 +93,73 @@ class UserProfile extends Component {
     } else {
     }
   };
-  PostControls = (post) => {
+
+  handleToggleEditor = (post, postScrollId) => {
+    this.setState({
+      showEditor: !this.state.showEditor,
+      currentPost: post,
+      postScrollId,
+    });
+  };
+  handleShowEditor = () => {
+    this.setState({ showEditor: true });
+  };
+  handleHideEditor = () => {
+    this.setState({ showEditor: false });
+  };
+  handleShowTagsCategoriesModal = () => {
+    this.setState({
+      showTagsCategorieModal: !this.state.showTagsCategorieModal,
+    });
+  };
+  handleCloseTagsCategoriesModal = () => {
+    this.setState({ showTagsCategorieModal: false });
+  };
+  handleSubmitPost = (data) => {};
+  handleChangeCategory = () => {
+    this.setState({ categoriesModalShown: !this.state.categoriesModalShown });
+  };
+  handlHideCategoryModal = () => {
+    this.setState({ categoriesModalShown: false });
+  };
+  handleShowAlert = () => {
+    this.setState({ showAlert: true });
+  };
+  handleHideAlert = () => {
+    this.setState({ showAlert: false });
+  };
+  handleReduceTextEditor = () => {
+    const editor = document.querySelector(".RichEditor-root");
+    this.setState({ reduceEditor: !this.state.reduceEditor });
+    if (!this.state.reduceEditor) {
+      editor.classList.add("re-reduce");
+    } else {
+      editor.classList.remove("re-reduce");
+    }
+  };
+  postBackward = (post) => {
     return (
-      <div className="post-additional-info">
-        <div className="post-controls-profile">
-          <div
-            className="control-item"
-            onClick={() => this.handleEditPost(post)}
+      <div className="post-details-backward">
+        <Link
+          onClick={this.handleReduceTextEditor}
+          activeClass="active"
+          to={this.state.postScrollId}
+          spy={true}
+          smooth={true}
+          offset={-70}
+          duration={500}
+        >
+          <IconContext.Provider
+            value={{ className: "post-details-icon-backward" }}
           >
-            <IconContext.Provider value={{ className: "profile-edit-icon" }}>
-              <MdModeEdit />
-            </IconContext.Provider>
-            <span>edit</span>
-          </div>
-          <div
-            className="control-item"
-            onClick={() => this.handleDeletePost(post)}
-          >
-            <IconContext.Provider value={{ className: "profile-edit-icon" }}>
-              <BsTrash />
-            </IconContext.Provider>
-            <span>delete</span>
-          </div>
-        </div>
+            <TiArrowBack />
+          </IconContext.Provider>
+          {truncatedStr(post.title || "Back to original post", 50)}
+        </Link>
       </div>
     );
   };
+
   render() {
     const { onToggleMenu } = this.props;
     const {
@@ -112,6 +169,10 @@ class UserProfile extends Component {
       navModalOpen,
       selectedLink,
       isCurrentUser,
+      showTagsCategorieModal,
+      alertMessage,
+      showAlert,
+      currentPost,
     } = this.state;
 
     const links = [
@@ -275,7 +336,7 @@ class UserProfile extends Component {
                 </div>
               </div>
 
-              <div className="user-profile-content">
+              <div className="user-profile-content" id="post">
                 <Switch>
                   <Route
                     exact
@@ -285,6 +346,7 @@ class UserProfile extends Component {
                         {...props}
                         posts={posts}
                         user={user}
+                        onComment={this.handleToggleEditor}
                         isCurrentUser={isCurrentUser}
                         onShowUser={this.handleShowUser}
                         UserTooltipVisible={UserTooltipVisible}
@@ -297,6 +359,24 @@ class UserProfile extends Component {
             </div>
           </div>
         )}
+        {this.state.showEditor && (
+          <RichTextEditor
+            defaultContent="this is the default content"
+            comment={() => this.postBackward(currentPost)}
+            onSubmit={this.handleSubmitPost}
+            onCloseCategorie={this.handleCloseTagsCategoriesModal}
+            onShowCategories={this.handleShowTagsCategoriesModal}
+            categoriesShown={showTagsCategorieModal}
+            showEditor={!this.state.showEditor}
+            onHideEditor={this.handleHideEditor}
+          />
+        )}
+        <AppAlert
+          message={alertMessage}
+          title="Alert"
+          onHide={this.handleHideAlert}
+          visible={showAlert}
+        />
       </>
     );
   }

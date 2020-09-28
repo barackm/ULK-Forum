@@ -107,9 +107,10 @@ class TagsCategoriesModal extends Component {
                     onKeyUp={this.hanleAddTag}
                   />
                 </div>
-                <button onClick={this.handleSubmit}>
-                  {!this.state.selectedTag && <span></span>} OK
-                </button>
+                <div className="tags-modal-btn-wrapper">
+                  <button onClick={this.handleSubmit}>OK</button>
+                  {!this.state.selectedTag && <span></span>}
+                </div>
               </div>
             </div>
             <ul className="tasg-modal-list" tabIndex="0" role="listbox">

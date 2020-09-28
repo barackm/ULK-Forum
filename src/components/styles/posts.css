@@ -148,6 +148,10 @@
   border-bottom: 1px solid var(--border-bottom-color);
   padding-bottom: 20px;
 }
+.post-container .content {
+  text-decoration: none;
+  color: var(--dark);
+}
 .post-container .content p {
   line-height: 1.7;
 }
@@ -203,10 +207,17 @@
   .post-main-wrapper {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    /* display: flex; */
   }
   .post-details-container {
-    width: 95%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /* align-items: center; */
+    flex-direction: column;
     padding-right: 0px !important;
   }
   .post-container .content {
